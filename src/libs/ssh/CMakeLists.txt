@@ -1,6 +1,6 @@
 include(QtcLibrary)
 
-find_package(Qt5Widgets)
+qt_find_modules(Widgets)
 
 set(target QtcSsh)
 
@@ -43,14 +43,14 @@ set(uifiles
     sshkeycreationdialog.ui
 )
 
-qt5_wrap_ui(uisrcs ${uifiles})
+qt_wrap_ui(uisrcs ${uifiles})
 
-add_qtc_library(${target} SHARED
+qtc_add_library(${target} SHARED
     ${sources}
     ${uisrcs}
 )
 
-qt5_use_modules(${target} Widgets Network)
+qt_use_modules(${target} Widgets Network)
 
 include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty)
 target_link_libraries(${target} Botan)

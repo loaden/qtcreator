@@ -1,7 +1,7 @@
 include(QtcLibrary)
 include(QtcTool)
 
-find_package(Qt5Widgets)
+qt_find_modules(Widgets)
 
 set(target Utils)
 set(targetProcessStub qtcreator_process_stub)
@@ -13,7 +13,7 @@ set(CMAKE_AUTOMOC ON)
 add_definitions(-DQTCREATOR_UTILS_LIB)
 include_directories(".." "${CMAKE_BINARY_DIR}")
 
-if (WIN32)
+if (WINDOWS)
     set(sources
         consoleprocess_win.cpp
         winutils.cpp
@@ -111,16 +111,16 @@ set(qrcfiles
     utils.qrc
 )
 
-qt5_wrap_ui(uisrcs ${uifiles})
-qt5_add_resources(qrcsrcs ${qrcfiles})
+qt_wrap_ui(uisrcs ${uifiles})
+qt_add_resources(qrcsrcs ${qrcfiles})
 
-add_qtc_library(${target} SHARED
+qtc_add_library(${target} SHARED
     ${sources}
     ${uisrcs}
     ${qrcsrcs}
 )
 
-qt5_use_modules(${target} Widgets Network Script Concurrent)
+qt_use_modules(${target} Widgets Network Script Concurrent)
 
 if (WINDOWS)
     target_link_libraries(${target} user32 iphlpapi ws2_32)

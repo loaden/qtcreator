@@ -1,6 +1,6 @@
 include(QtcLibrary)
 
-find_package(Qt5Widgets)
+qt_find_modules(Widgets)
 
 set(target styleplugin)
 set(QTC_STYLEPLUGIN_PATH lib/qtcreator/qtcomponents/plugin)
@@ -39,7 +39,7 @@ install(TARGETS ${target}
     ARCHIVE DESTINATION lib
 )
 
-qt5_use_modules(${target} Widgets)
+qt_use_modules(${target} Widgets)
 
 if (QTC_PCH_SUPPORT)
     use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")

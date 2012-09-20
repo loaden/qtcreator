@@ -17,13 +17,16 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 # Configuration
 include(QtcConfig)
 
-# Debug helper
+# Debug Helper
 include(QtcDebug)
 
-# PCH support
+# Qt Helper
+include (QtHelper)
+
+# PCH Support
 include(PrecompiledHeader)
 
-if (WIN32)
+if (WINDOWS)
     add_definitions(-DUNICODE)
     if (MSVC)
         add_definitions(-D_CRT_SECURE_NO_WARNINGS)

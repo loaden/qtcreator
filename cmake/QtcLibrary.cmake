@@ -1,10 +1,10 @@
-if (WIN32)
+if (WINDOWS)
     set(QTC_LIBRARY_PATH bin)
 else()
     set(QTC_LIBRARY_PATH lib/qtcreator)
 endif()
 
-macro(add_qtc_library target)
+macro(qtc_add_library target)
     add_library(${target} ${ARGN})
     set_target_properties(${target} PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_LIBRARY_PATH}

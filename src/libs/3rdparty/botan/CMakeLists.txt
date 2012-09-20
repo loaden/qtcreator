@@ -1,6 +1,6 @@
 include(QtcLibrary)
 
-find_package(Qt5Core)
+qt_find_modules(Core)
 
 set(target Botan)
 
@@ -12,7 +12,7 @@ if (QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../precompiled_headers/botan_pch.h precompiled)
 endif()
 
-add_qtc_library(${target} SHARED
+qtc_add_library(${target} SHARED
     ${sources}
     ${precompiled}
 )
@@ -85,7 +85,7 @@ else()
     target_link_libraries(${target} rt dl)
 endif()
 
-qt5_use_modules(${target} Core)
+qt_use_modules(${target} Core)
 
 if (QTC_PCH_SUPPORT)
     add_precompiled_header(${target} "${sources}")

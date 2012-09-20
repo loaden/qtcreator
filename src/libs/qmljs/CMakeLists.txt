@@ -1,6 +1,6 @@
 include(QtcLibrary)
 
-find_package(Qt5Widgets)
+qt_find_modules(Widgets)
 
 set(target QmlJS)
 
@@ -50,14 +50,14 @@ set(qrcfiles
     qmljs.qrc
 )
 
-qt5_add_resources(qrcsrcs ${qrcfiles})
+qt_add_resources(qrcsrcs ${qrcfiles})
 
-add_qtc_library(${target} SHARED
+qtc_add_library(${target} SHARED
     ${sources}
     ${qrcsrcs}
 )
 
-qt5_use_modules(${target} Widgets)
+qt_use_modules(${target} Widgets)
 
 if (QTC_PCH_SUPPORT)
     use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")

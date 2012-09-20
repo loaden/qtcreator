@@ -1,6 +1,6 @@
 set(QTC_PLUGIN_PATH lib/qtcreator/plugins/Nokia)
 
-macro(add_qtc_plugin target)
+macro(qtc_add_plugin target)
     add_library(${target} SHARED ${ARGN})
     set_target_properties(${target} PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_PLUGIN_PATH}
