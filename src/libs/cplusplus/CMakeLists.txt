@@ -88,6 +88,6 @@ qtc_add_library(${target} SHARED
 
 qt_use_modules(${target} Widgets)
 
-if (QTC_PCH_SUPPORT)
+if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")
 endif()

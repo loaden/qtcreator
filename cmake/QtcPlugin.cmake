@@ -7,7 +7,7 @@ macro(qtc_add_plugin target)
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_PLUGIN_PATH}
         ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
     )
-    if (MINGW)
+    if(MINGW)
         set_target_properties(${target} PROPERTIES
             PREFIX ""
             IMPORT_SUFFIX ".a"

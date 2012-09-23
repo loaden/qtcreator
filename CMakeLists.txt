@@ -24,14 +24,14 @@ include(QtcConfig)
 include(QtcDebug)
 
 # Qt Helper
-include (QtHelper)
+include(QtHelper)
 
 # PCH Support
 include(PrecompiledHeader)
 
-if (WINDOWS)
+if(WINDOWS)
     add_definitions(-DUNICODE)
-    if (MSVC)
+    if(MSVC)
         add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     endif()
 endif()

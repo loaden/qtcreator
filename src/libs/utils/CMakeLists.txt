@@ -13,18 +13,18 @@ set(CMAKE_AUTOMOC ON)
 add_definitions(-DQTCREATOR_UTILS_LIB)
 include_directories(".." "${CMAKE_BINARY_DIR}")
 
-if (WINDOWS)
+if(WINDOWS)
     set(sources
         consoleprocess_win.cpp
         winutils.cpp
     )
-elseif (UNIX)
+elseif(UNIX)
     set(sources
         consoleprocess_unix.cpp
     )
 endif()
 
-if (UNIX AND NOT MACOSX)
+if(UNIX AND NOT MACOSX)
     set(sources ${sources}
         unixutils.cpp
     )
@@ -122,27 +122,27 @@ qtc_add_library(${target} SHARED
 
 qt_use_modules(${target} Widgets Network Script Concurrent)
 
-if (WINDOWS)
+if(WINDOWS)
     target_link_libraries(${target} user32 iphlpapi ws2_32)
 else()
     target_link_libraries(${target} X11)
 endif()
 
-if (QTC_PCH_SUPPORT)
+if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")
 endif()
 
-if (WINDOWS)
+if(WINDOWS)
     set(${targetProcessStub}_srcs process_stub_win.c)
 else()
     set(${targetProcessStub}_srcs process_stub_unix.c)
 endif()
 add_qtc_tool(${targetProcessStub} ${${targetProcessStub}_srcs})
-if (WINDOWS)
+if(WINDOWS)
     target_link_libraries(${targetProcessStub} shell32)
 endif()
 
-if (WINDOWS)
+if(WINDOWS)
     add_qtc_tool(${targetCtrlcStub} process_ctrlc_stub.cpp)
     target_link_libraries(${targetCtrlcStub} user32 shell32)
 endif()

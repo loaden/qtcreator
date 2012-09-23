@@ -1,4 +1,4 @@
-if (WINDOWS)
+if(WINDOWS)
     set(QTC_LIBRARY_PATH bin)
 else()
     set(QTC_LIBRARY_PATH lib/qtcreator)
@@ -11,7 +11,7 @@ macro(qtc_add_library target)
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_LIBRARY_PATH}
         ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib
     )
-    if (MINGW)
+    if(MINGW)
         set_target_properties(${target} PROPERTIES
             PREFIX ""
             IMPORT_SUFFIX ".a"

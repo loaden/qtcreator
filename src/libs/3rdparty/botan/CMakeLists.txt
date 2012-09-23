@@ -8,7 +8,7 @@ set(sources
     botan.cpp
 )
 
-if (QTC_PCH_SUPPORT)
+if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../precompiled_headers/botan_pch.h precompiled)
 endif()
 
@@ -19,7 +19,7 @@ qtc_add_library(${target} SHARED
 
 set(defines -DBOTAN_DLL=Q_DECL_EXPORT)
 
-if (UNIX)
+if(UNIX)
     set(defines ${defines}
         -DBOTAN_TARGET_OS_HAS_GETTIMEOFDAY
         -DBOTAN_HAS_ALLOC_MMAP
@@ -32,7 +32,7 @@ if (UNIX)
     )
 endif()
 
-if (LINUX)
+if(LINUX)
     set(defines ${defines}
         -DBOTAN_TARGET_OS_IS_LINUX
         -DBOTAN_TARGET_OS_HAS_CLOCK_GETTIME
@@ -42,9 +42,9 @@ if (LINUX)
         -DBOTAN_HAS_DYNAMICALLY_LOADED_ENGINE
         -DBOTAN_HAS_DYNAMIC_LOADER
     )
-elseif (MACOSX)
+elseif(MACOSX)
     set(defines ${defines} -DBOTAN_TARGET_OS_IS_DARWIN)
-elseif (WINDOWS)
+elseif(WINDOWS)
     set(defines ${defines}
         -DBOTAN_TARGET_OS_IS_WINDOWS
         -DBOTAN_TARGET_OS_HAS_LOADLIBRARY
@@ -58,24 +58,24 @@ elseif (WINDOWS)
     )
 endif()
 
-if (MSVC)
+if(MSVC)
     set(defines ${defines}
         -DBOTAN_BUILD_COMPILER_IS_MSVC
         -DBOTAN_TARGET_OS_HAS_GMTIME_S
     )
-elseif (CMAKE_COMPILER_IS_GNUCXX OR MINGW)
+elseif(CMAKE_COMPILER_IS_GNUCXX OR MINGW)
     set(defines ${defines} -DBOTAN_BUILD_COMPILER_IS_GCC)
 endif()
 
 add_definitions(${defines})
 
-if (CMAKE_COMPILER_IS_GNUCXX OR MINGW)
+if(CMAKE_COMPILER_IS_GNUCXX OR MINGW)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fpermissive -finline-functions -Wno-long-long")
 endif()
 
-if (WINDOWS)
+if(WINDOWS)
     target_link_libraries(${target} advapi32 user32)
-    if (MSVC)
+    if(MSVC)
         string(REGEX REPLACE " /EHsc" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267 /wd4996 /wd4530")
     elseif(MINGW)
@@ -87,6 +87,6 @@ endif()
 
 qt_use_modules(${target} Core)
 
-if (QTC_PCH_SUPPORT)
+if(QTC_PCH_SUPPORT)
     add_precompiled_header(${target} "${sources}")
 endif()

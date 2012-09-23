@@ -5,7 +5,7 @@ set(QTC_PLUGINS_SOURCE_PATH "${CMAKE_SOURCE_DIR}/src/plugins"
     CACHE INTERNAL "Plugin sources path"
 )
 
-if (QTC_PCH_SUPPORT)
+if(QTC_PCH_SUPPORT)
     set(QTC_CORE_PCH_TARGET ${CMAKE_PROJECT_NAME}_pch_helper
         CACHE INTERNAL "QtCore PCH Target for library"
     )
