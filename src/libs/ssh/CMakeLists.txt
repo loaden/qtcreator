@@ -45,9 +45,14 @@ set(uifiles
 
 qt_wrap_ui(uisrcs ${uifiles})
 
+if(QTC_PCH_SUPPORT)
+    set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+endif()
+
 qtc_add_library(${target} SHARED
     ${sources}
     ${uisrcs}
+    ${precompiled}
 )
 
 qt_use_modules(${target} Widgets Network)
@@ -56,5 +61,6 @@ include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty)
 target_link_libraries(${target} Botan)
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")
+    use_precompiled_header(${target} "${sources}")
 endif()
+
