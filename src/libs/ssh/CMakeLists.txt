@@ -4,9 +4,6 @@ qt_find_modules(Widgets)
 
 set(target QtcSsh)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-
 add_definitions(-DQSSH_LIBRARY)
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267")
@@ -60,7 +57,11 @@ qt_use_modules(${target} Widgets Network)
 include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty)
 target_link_libraries(${target} Botan)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set_target_properties(${target} PROPERTIES
+    AUTOMOC ON
+)
+
 if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
 endif()
-

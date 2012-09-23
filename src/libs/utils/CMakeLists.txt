@@ -7,8 +7,20 @@ set(target Utils)
 set(targetProcessStub qtcreator_process_stub)
 set(targetCtrlcStub qtcreator_ctrlc_stub)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
+if(WINDOWS)
+    set(${targetProcessStub}_srcs process_stub_win.c)
+else()
+    set(${targetProcessStub}_srcs process_stub_unix.c)
+endif()
+add_qtc_tool(${targetProcessStub} ${${targetProcessStub}_srcs})
+if(WINDOWS)
+    target_link_libraries(${targetProcessStub} shell32)
+endif()
+
+if(WINDOWS)
+    add_qtc_tool(${targetCtrlcStub} process_ctrlc_stub.cpp)
+    target_link_libraries(${targetCtrlcStub} user32 shell32)
+endif()
 
 add_definitions(-DQTCREATOR_UTILS_LIB)
 include_directories(".." "${CMAKE_BINARY_DIR}")
@@ -126,6 +138,10 @@ qtc_add_library(${target} SHARED
 )
 
 qt_use_modules(${target} Widgets Network Script Concurrent)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set_target_properties(${target} PROPERTIES
+    AUTOMOC ON
+)
 
 if(WINDOWS)
     target_link_libraries(${target} user32 iphlpapi ws2_32)
@@ -136,19 +152,3 @@ endif()
 if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
 endif()
-
-if(WINDOWS)
-    set(${targetProcessStub}_srcs process_stub_win.c)
-else()
-    set(${targetProcessStub}_srcs process_stub_unix.c)
-endif()
-add_qtc_tool(${targetProcessStub} ${${targetProcessStub}_srcs})
-if(WINDOWS)
-    target_link_libraries(${targetProcessStub} shell32)
-endif()
-
-if(WINDOWS)
-    add_qtc_tool(${targetCtrlcStub} process_ctrlc_stub.cpp)
-    target_link_libraries(${targetCtrlcStub} user32 shell32)
-endif()
-
