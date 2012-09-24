@@ -91,6 +91,10 @@ qtc_add_library(${target} SHARED
     ${precompiled}
 )
 
+if(MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267")
+endif()
+
 qt_use_modules(${target} Widgets)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set_target_properties(${target} PROPERTIES
