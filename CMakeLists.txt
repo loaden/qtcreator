@@ -32,10 +32,15 @@ include(PrecompiledHeader)
 if(WINDOWS)
     add_definitions(-DUNICODE)
     if(MSVC)
+        # Don't warn about sprintf, fopen etc being 'unsafe'
         add_definitions(-D_CRT_SECURE_NO_WARNINGS)
     endif()
 endif()
 
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x040900)
+#add_definitions(-DQT_NO_CAST_FROM_ASCII)
+add_definitions(-DQT_NO_CAST_TO_ASCII -DQT_DISABLE_DEPRECATED_BEFORE=0x040900)
+if(NOT MACOSX)
+    add_definitions(-DQT_USE_FAST_OPERATOR_PLUS -DQT_USE_FAST_CONCATENATION)
+endif()
 
 add_subdirectory(src)
