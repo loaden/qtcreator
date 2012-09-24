@@ -4,10 +4,8 @@ qt_find_modules(Widgets)
 
 set(target QmlJS)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(CMAKE_AUTOMOC ON)
-
 add_definitions(-DQMLJS_BUILD_DIR -DQT_CREATOR)
+include_directories(..)
 
 set(sources
     jsoncheck.cpp
@@ -52,13 +50,22 @@ set(qrcfiles
 
 qt_add_resources(qrcsrcs ${qrcfiles})
 
+if(QTC_PCH_SUPPORT)
+    set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+endif()
+
 qtc_add_library(${target} SHARED
     ${sources}
     ${qrcsrcs}
+    ${precompiled}
 )
 
 qt_use_modules(${target} Widgets)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set_target_properties(${target} PROPERTIES
+    AUTOMOC ON
+)
 
 if (QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")
+    use_precompiled_header(${target} "${sources}")
 endif()

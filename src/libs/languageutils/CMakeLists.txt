@@ -9,7 +9,7 @@ set(sources
     componentversion.cpp
 )
 
-add_definitions(-DQT_CREATOR -DLANGUAGEUTILS_BUILD_DIR)
+add_definitions(-DLANGUAGEUTILS_BUILD_DIR)
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_pch.h precompiled)

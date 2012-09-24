@@ -16,8 +16,13 @@ set(sources
     qwheelarea.cpp
 )
 
+if(QTC_PCH_SUPPORT)
+    set_precompiled_header(${target} CXX ../../../shared/qtcreator_gui_pch.h precompiled)
+endif()
+
 add_library(${target} SHARED
     ${sources}
+    ${precompiled}
 )
 
 set_target_properties(${target} PROPERTIES
@@ -39,8 +44,8 @@ install(TARGETS ${target}
     ARCHIVE DESTINATION lib
 )
 
-qt_use_modules(${target} Widgets)
+qt_use_modules(${target} Widgets Script Quick1)
 
 if (QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} ${QTC_GUI_PCH_TARGET} "${sources}")
+    use_precompiled_header(${target} "${sources}")
 endif()
