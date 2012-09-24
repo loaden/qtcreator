@@ -50,7 +50,8 @@ function(add_msvc_precompiled_header target)
     set(${target}_PCH_BINARY_FILE "${CMAKE_CURRENT_BINARY_DIR}/${target}_pch.pch"
         CACHE INTERNAL "The path of the precompiled binary"
     )
-    message(STATUS "[${target}] Precompiled header is \"${CMAKE_CURRENT_SOURCE_DIR}/${${target}_PCH_HEADER}\"")
+    get_source_file_property(pchHeaderFile ${${target}_PCH_HEADER} LOCATION)
+    message(STATUS "[${target}] Precompiled header is \"${pchHeaderFile}\"")
     message(STATUS "[${target}] Precompiled binary is \"${${target}_PCH_BINARY_FILE}\"")
     set_source_files_properties(${${target}_PCH_SOURCE} PROPERTIES
         COMPILE_FLAGS "/Yc\"${CMAKE_CURRENT_SOURCE_DIR}/${${target}_PCH_HEADER}\" /Fp\"${${target}_PCH_BINARY_FILE}\""
@@ -74,13 +75,13 @@ function(use_msvc_precompiled_header target sources)
 endfunction()
 
 function(add_gcc_precompiled_header target)
-    set(origPCHFilename ${CMAKE_CURRENT_SOURCE_DIR}/${${target}_PCH_HEADER})
-    if(NOT EXISTS ${origPCHFilename})
-        message(FATAL_ERROR "[${target}] \"${origPCHFilename}\" does not exist")
+    get_source_file_property(origPCHHeaderFile ${${target}_PCH_HEADER} LOCATION)
+    if(NOT origPCHHeaderFile)
+        message(FATAL_ERROR "[${target}] \"${origPCHHeaderFile}\" does not exist")
         return()
     else()
-        message(STATUS "[${target}] Precompiled header is \"${origPCHFilename}\"")
-        get_filename_component(pchHeaderPath ${origPCHFilename} PATH)
+        message(STATUS "[${target}] Precompiled header is \"${origPCHHeaderFile}\"")
+        get_filename_component(pchHeaderPath ${origPCHHeaderFile} PATH)
         if(NOT ${pchHeaderPath} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
             set(pchSearchPath "-I\"${pchHeaderPath}\"")
             separate_arguments(pchSearchPath)
@@ -94,8 +95,8 @@ function(add_gcc_precompiled_header target)
         CACHE INTERNAL "The path of the precompiled header"
     )
     add_custom_command(OUTPUT ${${target}_PCH_HEADER_FILE}
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${origPCHFilename} ${${target}_PCH_HEADER_FILE}
-        DEPENDS ${origPCHFilename}
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${origPCHHeaderFile} ${${target}_PCH_HEADER_FILE}
+        DEPENDS ${origPCHHeaderFile}
         COMMENT "[${target}] Update precompiled header - done"
     )
     if(${${target}_PCH_LANGUAGE} STREQUAL "CXX")
