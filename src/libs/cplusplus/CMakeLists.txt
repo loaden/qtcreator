@@ -88,6 +88,7 @@ endif()
 qtc_add_library(${target} SHARED
     ${sources}
     ${qrcsrcs}
+    ${precompiled}
 )
 
 qt_use_modules(${target} Widgets)

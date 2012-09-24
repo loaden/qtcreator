@@ -12,6 +12,9 @@ macro(set_precompiled_header target language precompiledHeader precompiledSource
         get_filename_component(pchHeaderBasename ${precompiledHeader} NAME_WE)
         get_pch_source_extension(${target} srcext)
         set(${precompiledSource} ${target}_pch.${srcext})
+        set(${target}_PCH_SOURCE_VARIABLE ${precompiledSource}
+            CACHE INTERNAL "Precompiled source filename variable"
+        )
         set(${target}_PCH_SOURCE ${${precompiledSource}}
             CACHE INTERNAL "Precompiled source filename"
         )
@@ -56,6 +59,12 @@ function(add_msvc_precompiled_header target)
 endfunction()
 
 function(use_msvc_precompiled_header target sources)
+    get_target_property(targetSources ${target} SOURCES)
+    list(FIND targetSources ${${target}_PCH_SOURCE} result)
+    if(result EQUAL -1)
+        message(FATAL_ERROR "[${target}] Please add \"\${${${target}_PCH_SOURCE_VARIABLE}}\" as source to target")
+        return()
+    endif()
     foreach(src ${sources})
         set_source_files_properties(${src} PROPERTIES
             COMPILE_FLAGS "/Yu\"${${target}_PCH_BINARY_FILE}\" /FI\"${${target}_PCH_BINARY_FILE}\" /Fp\"${${target}_PCH_BINARY_FILE}\""
