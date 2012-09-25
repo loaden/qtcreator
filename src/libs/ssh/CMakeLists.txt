@@ -36,10 +36,30 @@ set(sources
     sshsendfacility.cpp
 )
 
+set(mocsources
+    sshconnectionmanager.cpp
+)
+
+set(mocheaders
+    sftpchannel.h
+    sftpchannel_p.h
+    sftpfilesystemmodel.h
+    sshchannel_p.h
+    sshchannelmanager_p.h
+    sshconnection.h
+    sshconnection_p.h
+    sshkeycreationdialog.h
+    sshremoteprocess.h
+    sshremoteprocess_p.h
+    sshremoteprocessrunner.h
+)
+
 set(uifiles
     sshkeycreationdialog.ui
 )
 
+qt_generate_moc(mocfiles mocsources)
+qt_wrap_cpp(mocsrcs ${mocheaders})
 qt_wrap_ui(uisrcs ${uifiles})
 
 if(QTC_PCH_SUPPORT)
@@ -48,20 +68,19 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
+    ${mocsrcs}
+    ${mocfiles}
     ${uisrcs}
     ${precompiled}
 )
 
 qt_use_modules(${target} Widgets Network)
 
-include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty)
+include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(${target} Botan)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set_target_properties(${target} PROPERTIES
-    AUTOMOC ON
-)
-
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources}")
+    use_precompiled_header(${target} "${sources};${mocsrcs}")
 endif()
+
+#qt_trace_moc_files(h cpp)

@@ -23,7 +23,7 @@ if(WINDOWS)
 endif()
 
 add_definitions(-DQTCREATOR_UTILS_LIB)
-include_directories(".." "${CMAKE_BINARY_DIR}")
+include_directories(. .. ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 if(WINDOWS)
     set(sources
@@ -112,6 +112,63 @@ set(sources ${sources}
     wizard.cpp
 )
 
+set(mocsources
+    crumblepath.cpp
+    qtcolorbutton.cpp
+    submiteditorwidget.cpp
+    wizard.cpp
+)
+
+set(mocspecial
+    completingtextedit.h
+)
+
+set(mocheaders
+    appmainwindow.h
+    basetreeview.h
+    basevalidatinglineedit.h
+    checkablemessagebox.h
+    classnamevalidatinglineedit.h
+    consoleprocess.h
+    crumblepath.h
+    detailsbutton.h
+    detailswidget.h
+    environmentmodel.h
+    faketooltip.h
+    fancylineedit.h
+    fancymainwindow.h
+    filenamevalidatinglineedit.h
+    filesystemwatcher.h
+    filewizarddialog.h
+    filewizardpage.h
+    filterlineedit.h
+    historycompleter.h
+    ipaddresslineedit.h
+    iwelcomepage.h
+    linecolumnlabel.h
+    multitask.h
+    navigationtreeview.h
+    networkaccessmanager.h
+    newclasswidget.h
+    outputformatter.h
+    parameteraction.h
+    pathchooser.h
+    pathlisteditor.h
+    projectintropage.h
+    projectnamevalidatinglineedit.h
+    proxyaction.h
+    qtcolorbutton.h
+    qtcprocess.h
+    savedaction.h
+    settingsselector.h
+    statuslabel.h
+    styledbar.h
+    submiteditorwidget.h
+    submitfieldwidget.h
+    synchronousprocess.h
+    wizard.h
+)
+
 set(uifiles
     filewizardpage.ui
     projectintropage.ui
@@ -123,6 +180,13 @@ set(qrcfiles
     utils.qrc
 )
 
+set(qrcfiles
+    utils.qrc
+)
+
+qt_generate_moc(mocfiles mocsources)
+qt_generate_moc_plus(mocfiles mocspecial moc_ .cpp)
+qt_wrap_cpp(mocsrcs ${mocheaders})
 qt_wrap_ui(uisrcs ${uifiles})
 qt_add_resources(qrcsrcs ${qrcfiles})
 
@@ -132,16 +196,14 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
+    ${mocfiles}
+    ${mocsrcs}
     ${uisrcs}
     ${qrcsrcs}
     ${precompiled}
 )
 
 qt_use_modules(${target} Widgets Network Script Concurrent)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set_target_properties(${target} PROPERTIES
-    AUTOMOC ON
-)
 
 if(WINDOWS)
     target_link_libraries(${target} user32 iphlpapi ws2_32)
@@ -152,3 +214,5 @@ endif()
 if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
 endif()
+
+#qt_trace_moc_files(h cpp)

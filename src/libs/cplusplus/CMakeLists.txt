@@ -108,3 +108,4 @@ if(QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources};${mocsrcs}")
 endif()
 
+#qt_trace_moc_files()
