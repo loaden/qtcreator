@@ -75,6 +75,12 @@ set(sources
     TypePrettyPrinter.cpp
 )
 
+set(mocheaders
+    OverviewModel.h
+)
+
+qt_wrap_cpp(mocsrcs ${mocheaders})
+
 set(qrcfiles
     cplusplus.qrc
 )
@@ -87,6 +93,7 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
+    ${mocsrcs}
     ${qrcsrcs}
     ${precompiled}
 )
@@ -96,12 +103,8 @@ if(MSVC)
 endif()
 
 qt_use_modules(${target} Widgets)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set_target_properties(${target} PROPERTIES
-    AUTOMOC ON
-)
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources}")
+    use_precompiled_header(${target} "${sources};${mocsrcs}")
 endif()
 
