@@ -79,13 +79,12 @@ set(mocheaders
     OverviewModel.h
 )
 
-qt_wrap_cpp(mocsrcs ${mocheaders})
-
 set(qrcfiles
     cplusplus.qrc
 )
 
-qt_add_resources(qrcsrcs ${qrcfiles})
+qt_wrap_cpp(qtsrcs ${mocheaders})
+qt_add_resources(qtsrcs ${qrcfiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
@@ -93,8 +92,7 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
-    ${mocsrcs}
-    ${qrcsrcs}
+    ${qtsrcs}
     ${precompiled}
 )
 
@@ -105,7 +103,7 @@ endif()
 qt_use_modules(${target} Widgets)
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources};${mocsrcs}")
+    use_precompiled_header(${target} "${sources};${qtsrcs}")
 endif()
 
 #qt_trace_moc_files()

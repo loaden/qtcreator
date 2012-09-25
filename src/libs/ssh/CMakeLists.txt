@@ -58,9 +58,9 @@ set(uifiles
     sshkeycreationdialog.ui
 )
 
-qt_generate_moc(mocfiles mocsources)
-qt_wrap_cpp(mocsrcs ${mocheaders})
-qt_wrap_ui(uisrcs ${uifiles})
+qt_generate_moc(qtsrcs ${mocsources})
+qt_wrap_cpp(qtsrcs ${mocheaders})
+qt_wrap_ui(qthdrs ${uifiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
@@ -68,9 +68,8 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
-    ${mocsrcs}
-    ${mocfiles}
-    ${uisrcs}
+    ${qtsrcs}
+    ${qthdrs}
     ${precompiled}
 )
 
@@ -80,7 +79,7 @@ include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty ${CMAKE_CURRENT_BINARY_DIR}
 target_link_libraries(${target} Botan)
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources};${mocsrcs}")
+    use_precompiled_header(${target} "${sources};${qtsrcs}")
 endif()
 
 #qt_trace_moc_files(h cpp)

@@ -184,11 +184,11 @@ set(qrcfiles
     utils.qrc
 )
 
-qt_generate_moc(mocfiles mocsources)
-qt_generate_moc_plus(mocfiles mocspecial moc_ .cpp)
-qt_wrap_cpp(mocsrcs ${mocheaders})
-qt_wrap_ui(uisrcs ${uifiles})
-qt_add_resources(qrcsrcs ${qrcfiles})
+qt_generate_moc(qtincs ${mocsources})
+qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
+qt_wrap_cpp(qtsrcs ${mocheaders})
+qt_wrap_ui(qtincs ${uifiles})
+qt_add_resources(qtsrcs ${qrcfiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
@@ -196,10 +196,8 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
-    ${mocfiles}
-    ${mocsrcs}
-    ${uisrcs}
-    ${qrcsrcs}
+    ${qtsrcs}
+    ${qtincs}
     ${precompiled}
 )
 
@@ -212,7 +210,7 @@ else()
 endif()
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources}")
+    use_precompiled_header(${target} "${sources};${qtsrcs}")
 endif()
 
 #qt_trace_moc_files(h cpp)

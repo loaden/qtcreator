@@ -48,7 +48,7 @@ set(qrcfiles
     qmljs.qrc
 )
 
-qt_add_resources(qrcsrcs ${qrcfiles})
+qt_add_resources(qtsrcs ${qrcfiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
@@ -56,7 +56,7 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
-    ${qrcsrcs}
+    ${qtsrcs}
     ${precompiled}
 )
 

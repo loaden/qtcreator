@@ -29,13 +29,12 @@ set(uifiles
     pluginerroroverview.ui
 )
 
-qt_wrap_ui(uisrcs ${uifiles})
-
 set(qrcfiles
     pluginview.qrc
 )
 
-qt_add_resources(qrcsrcs ${qrcfiles})
+qt_wrap_ui(qthdrs ${uifiles})
+qt_add_resources(qtsrcs ${qrcfiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
@@ -43,8 +42,8 @@ endif()
 
 qtc_add_library(${target} SHARED
     ${sources}
-    ${uifiles}
-    ${qrcsrcs}
+    ${qtsrcs}
+    ${qthdrs}
     ${precompiled}
 )
 
