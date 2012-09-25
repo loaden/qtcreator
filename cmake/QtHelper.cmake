@@ -8,6 +8,23 @@ macro(qt_use_modules target)
     qt5_use_modules(${target} ${ARGN})
 endmacro()
 
+macro(qt_generate_moc outfiles infiles)
+    qt_generate_moc_plus(${outfiles} ${infiles} "" .moc)
+endmacro()
+
+function(qt_generate_moc_plus outfiles infiles prefix suffix)
+    foreach(src ${${infiles}})
+        get_filename_component(nameWithoutExtension ${src} NAME_WE)
+        set(mocName ${prefix}${nameWithoutExtension}${suffix})
+        qt5_generate_moc(${src} ${mocName})
+        list(APPEND result ${mocName})
+    endforeach()
+    set(${outfiles} ${${outfiles}} ${result} PARENT_SCOPE)
+    set_source_files_properties(${result} PROPERTIES
+        HEADER_FILE_ONLY ON
+    )
+endfunction()
+
 macro(qt_wrap_cpp outfiles)
     qt5_wrap_cpp(${outfiles} ${ARGN})
 endmacro()
