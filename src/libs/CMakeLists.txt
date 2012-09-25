@@ -5,4 +5,6 @@ add_subdirectory(utils)
 add_subdirectory(cplusplus)
 add_subdirectory(qtcomponents/styleitem)
 add_subdirectory(qmljs)
+add_subdirectory(aggregation)
+add_subdirectory(extensionsystem)
 
