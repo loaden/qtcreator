@@ -45,6 +45,10 @@ install(TARGETS ${target}
 )
 
 qt_use_modules(${target} Widgets Script Quick1)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set_target_properties(${target} PROPERTIES
+    AUTOMOC ON
+)
 
 if (QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
