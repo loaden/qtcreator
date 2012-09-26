@@ -17,8 +17,7 @@ set(sources
 )
 
 set(mocheaders
-# TODO: what happend here?
-#    qdeclarativefolderlistmodel.h
+    qdeclarativefolderlistmodel.h
     qrangemodel.h
     qstyleitem.h
     qstyleplugin.h

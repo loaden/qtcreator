@@ -5,7 +5,7 @@ qt_find_modules(Widgets)
 set(target QmlJS)
 
 add_definitions(-DQMLJS_BUILD_DIR -DQT_CREATOR)
-include_directories(..)
+include_directories(${QTC_LIBS_SOURCE_PATH})
 
 set(sources
     jsoncheck.cpp
@@ -53,8 +53,13 @@ set(mocheaders
     qmljsmodelmanagerinterface.h
 )
 
+set(mocspecial
+    qmljscodeformatter.h
+)
+
 qt_add_resources(qtsrcs ${qrcfiles})
-qt_wrap_cpp(qtsrc ${mocheaders})
+qt_wrap_cpp(qtsrcs ${mocspecial})
+qt_wrap_cpp(qtsrcs ${mocheaders})
 
 qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
 qtc_add_library(${target} SHARED
@@ -63,6 +68,7 @@ qtc_add_library(${target} SHARED
     ${precompiled}
 )
 
+target_link_libraries(${target} Utils LanguageUtils)
 qt_use_modules(${target} Widgets)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 

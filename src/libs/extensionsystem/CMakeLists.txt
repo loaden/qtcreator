@@ -4,10 +4,8 @@ qt_find_modules(Widgets)
 
 set(target ExtensionSystem)
 
-# TODO: what?
-#add_definitions(-DEXTENSIONSYSTEM_LIBRARY -DIDE_TEST_DIR=\".\")
-add_definitions(-DEXTENSIONSYSTEM_LIBRARY)
-include_directories(.. ${CMAKE_CURRENT_BINARY_DIR})
+add_definitions(-DEXTENSIONSYSTEM_LIBRARY -DIDE_TEST_DIR=".")
+include_directories(${QTC_LIBS_SOURCE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
     pluginerrorview.cpp

@@ -23,7 +23,9 @@ if(WINDOWS)
 endif()
 
 add_definitions(-DQTCREATOR_UTILS_LIB)
-include_directories(. .. ${CMAKE_BINARY_DIR} ${CMAKE_CURRENT_BINARY_DIR})
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories(${QTC_LIBS_SOURCE_PATH} ${CMAKE_BINARY_DIR})
 
 if(WINDOWS)
     set(sources
