@@ -8,10 +8,7 @@ set(sources
     botan.cpp
 )
 
-if(QTC_PCH_SUPPORT)
-    set_precompiled_header(${target} CXX ../precompiled_headers/botan_pch.h precompiled)
-endif()
-
+qtc_set_pch(${target} CXX ../precompiled_headers/botan_pch.h precompiled)
 qtc_add_library(${target} SHARED
     ${sources}
     ${precompiled}
@@ -86,8 +83,4 @@ else()
 endif()
 
 qt_use_modules(${target} Core)
-
-if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} ${sources})
-endif()
-
+qtc_use_pch(${target} ${sources})

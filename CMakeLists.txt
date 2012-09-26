@@ -23,11 +23,11 @@ include(QtcConfig)
 # Debug Helper
 include(QtcDebug)
 
+# PCH Support
+include(QtcPCHHelper)
+
 # Qt Helper
 include(QtHelper)
-
-# PCH Support
-include(PrecompiledHeader)
 
 if(WINDOWS)
     add_definitions(-DUNICODE)

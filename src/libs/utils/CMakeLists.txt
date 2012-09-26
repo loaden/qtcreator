@@ -190,10 +190,7 @@ qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
-if(QTC_PCH_SUPPORT)
-    set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
-endif()
-
+qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}
@@ -201,16 +198,13 @@ qtc_add_library(${target} SHARED
     ${precompiled}
 )
 
-qt_use_modules(${target} Widgets Network Script Concurrent)
-
 if(WINDOWS)
     target_link_libraries(${target} user32 iphlpapi ws2_32)
 else()
     target_link_libraries(${target} X11)
 endif()
 
-if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} ${sources} ${qtsrcs})
-endif()
+qt_use_modules(${target} Widgets Network Script Concurrent)
+qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

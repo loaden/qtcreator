@@ -235,9 +235,9 @@ function(get_gcc_compile_flags target flagsVar)
     set(${flagsVar} ${compileFlags} PARENT_SCOPE)
 endfunction()
 
-function(add_pch_compile_flags target flags)
+function(add_pch_compile_flags target)
     if(CMAKE_COMPILER_IS_GNUC OR CMAKE_COMPILER_IS_GNUCXX OR MINGW)
-        set(${target}_PCH_FLAGS ${flags}
+        set(${target}_PCH_FLAGS ${ARGN}
             CACHE INTERNAL "Prepend additional compile flags for Precompiled Header support"
         )
     endif()

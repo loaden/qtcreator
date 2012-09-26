@@ -55,10 +55,8 @@ set(mocheaders
 
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrc ${mocheaders})
-if(QTC_PCH_SUPPORT)
-    set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
-endif()
 
+qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}
@@ -66,8 +64,6 @@ qtc_add_library(${target} SHARED
 )
 
 qt_use_modules(${target} Widgets)
+qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)
-if (QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources}")
-endif()
