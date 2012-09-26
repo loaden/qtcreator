@@ -184,11 +184,11 @@ set(qrcfiles
     utils.qrc
 )
 
+qt_add_resources(qtsrcs ${qrcfiles})
+qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
-qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qtincs ${uifiles})
-qt_add_resources(qtsrcs ${qrcfiles})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)

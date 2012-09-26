@@ -16,12 +16,26 @@ set(sources
     qwheelarea.cpp
 )
 
+set(mocheaders
+# TODO: what happend here?
+#    qdeclarativefolderlistmodel.h
+    qrangemodel.h
+    qstyleitem.h
+    qstyleplugin.h
+    qtmenu.h
+    qtmenubar.h
+    qtmenuitem.h
+    qwheelarea.h
+)
+
+qt_wrap_cpp(qtsrcs ${mocheaders})
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../../shared/qtcreator_gui_pch.h precompiled)
 endif()
 
 add_library(${target} SHARED
     ${sources}
+    ${qtsrcs}
     ${precompiled}
 )
 
@@ -45,11 +59,8 @@ install(TARGETS ${target}
 )
 
 qt_use_modules(${target} Widgets Script Quick1)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set_target_properties(${target} PROPERTIES
-    AUTOMOC ON
-)
 
+#qt_trace_moc_files(h cpp)
 if (QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
 endif()

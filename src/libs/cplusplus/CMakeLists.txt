@@ -83,8 +83,8 @@ set(qrcfiles
     cplusplus.qrc
 )
 
-qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_add_resources(qtsrcs ${qrcfiles})
+qt_wrap_cpp(qtsrcs ${mocheaders})
 
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)

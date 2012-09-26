@@ -48,8 +48,13 @@ set(qrcfiles
     qmljs.qrc
 )
 
-qt_add_resources(qtsrcs ${qrcfiles})
+set(mocheaders
+    qmljsicontextpane.h
+    qmljsmodelmanagerinterface.h
+)
 
+qt_add_resources(qtsrcs ${qrcfiles})
+qt_wrap_cpp(qtsrc ${mocheaders})
 if(QTC_PCH_SUPPORT)
     set_precompiled_header(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
 endif()
@@ -61,11 +66,8 @@ qtc_add_library(${target} SHARED
 )
 
 qt_use_modules(${target} Widgets)
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set_target_properties(${target} PROPERTIES
-    AUTOMOC ON
-)
 
+#qt_trace_moc_files(h cpp)
 if (QTC_PCH_SUPPORT)
     use_precompiled_header(${target} "${sources}")
 endif()
