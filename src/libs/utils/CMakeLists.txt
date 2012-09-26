@@ -210,7 +210,7 @@ else()
 endif()
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources};${qtsrcs}")
+    use_precompiled_header(${target} ${sources} ${qtsrcs})
 endif()
 
 #qt_trace_moc_files(h cpp)

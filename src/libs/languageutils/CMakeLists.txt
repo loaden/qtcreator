@@ -23,6 +23,6 @@ qtc_add_library(${target} SHARED
 qt_use_modules(${target} Core)
 
 if(QTC_PCH_SUPPORT)
-    use_precompiled_header(${target} "${sources}")
+    use_precompiled_header(${target} ${sources})
 endif()
 

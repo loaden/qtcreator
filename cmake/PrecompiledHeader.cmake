@@ -36,7 +36,7 @@ macro(set_precompiled_header target language precompiledHeader precompiledSource
     endif()
 endmacro()
 
-macro(use_precompiled_header target sources)
+macro(use_precompiled_header target)
     get_target_property(targetAutomoc ${target} AUTOMOC)
     if(CMAKE_AUTOMOC OR targetAutomoc)
         set(automocFile ${target}_automoc.cpp)
@@ -48,10 +48,10 @@ macro(use_precompiled_header target sources)
     endif()
     if(MSVC)
         add_msvc_precompiled_header(${target})
-        use_msvc_precompiled_header(${target} "${sources};${automocFile}")
+        use_msvc_precompiled_header(${target} ${ARGN} ${automocFile})
     elseif(CMAKE_COMPILER_IS_GNUC OR CMAKE_COMPILER_IS_GNUCXX OR MINGW)
         add_gcc_precompiled_header(${target})
-        use_gcc_precompiled_header(${target} "${sources};${automocFile}")
+        use_gcc_precompiled_header(${target} ${ARGN} ${automocFile})
     endif()
 endmacro()
 
@@ -67,7 +67,7 @@ function(add_msvc_precompiled_header target)
     )
 endfunction()
 
-function(use_msvc_precompiled_header target sources)
+function(use_msvc_precompiled_header target)
     if(NOT ${target}_PCH_BINARY_FILE)
         message(FATAL_ERROR "[${target}] Precompiled binary does not exist")
         return()
@@ -79,7 +79,7 @@ function(use_msvc_precompiled_header target sources)
         return()
     endif()
     set(pchBinaryFile ${${target}_PCH_BINARY_FILE})
-    foreach(src ${sources})
+    foreach(src ${ARGN})
         set_source_files_properties(${src} PROPERTIES
             COMPILE_FLAGS "/Yu\"${pchBinaryFile}\" /FI\"${pchBinaryFile}\" /Fp\"${pchBinaryFile}\""
             OBJECT_DEPENDS ${pchBinaryFile}
@@ -127,13 +127,13 @@ function(add_gcc_precompiled_header target)
     )
 endfunction()
 
-function(use_gcc_precompiled_header target sources)
+function(use_gcc_precompiled_header target)
     if(NOT ${target}_PCH_NEW_HEADER_FILE)
         message(FATAL_ERROR "[${target}] Precompiled header copy does not exist")
         return()
     endif()
     set(pchHeaderFile ${${target}_PCH_NEW_HEADER_FILE})
-    foreach(src ${sources})
+    foreach(src ${ARGN})
         set_source_files_properties(${src} PROPERTIES
             COMPILE_FLAGS "-include \"${pchHeaderFile}\" -Winvalid-pch"
             OBJECT_DEPENDS ${pchHeaderFile}
