@@ -4,6 +4,12 @@ qt_find_modules(Widgets)
 
 set(target ExtensionSystem)
 
+# Have to disable PCH support when using GCC cause this Error:
+# ExtensionSystem_pch.h.gch: not used because `IDE_TEST_DIR' defined as ` "."' not ` .'
+if(GCC)
+    set(QTC_PCH_SUPPORT OFF)
+endif()
+
 add_definitions(-DEXTENSIONSYSTEM_LIBRARY -DIDE_TEST_DIR=".")
 include_directories(${QTC_LIBS_SOURCE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
 
