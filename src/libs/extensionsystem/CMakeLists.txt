@@ -8,7 +8,7 @@ if(GCC)
     set(QTC_PCH_SUPPORT OFF)
 endif()
 
-add_definitions(-DEXTENSIONSYSTEM_LIBRARY -DIDE_TEST_DIR=".")
+add_definitions(-DEXTENSIONSYSTEM_LIBRARY -DIDE_TEST_DIR="${CMAKE_SOURCE_DIR}")
 include_directories(${QTC_LIBS_SOURCE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
