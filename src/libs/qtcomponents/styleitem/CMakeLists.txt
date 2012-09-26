@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Widgets)
-
 set(target styleplugin)
 set(QTC_STYLEPLUGIN_PATH lib/qtcreator/qtcomponents/plugin)
 

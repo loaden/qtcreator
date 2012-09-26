@@ -28,6 +28,7 @@ include(QtcPCHHelper)
 
 # Qt Helper
 include(QtHelper)
+qt_find_modules(Core Widgets)
 
 if(WINDOWS)
     add_definitions(-DUNICODE)

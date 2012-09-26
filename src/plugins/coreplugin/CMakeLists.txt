@@ -1,7 +1,5 @@
 include(QtcPlugin)
 
-qt_find_modules(Core)
-
 set(target Core)
 
 set(sources

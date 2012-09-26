@@ -1,8 +1,6 @@
 include(QtcLibrary)
 include(QtcTool)
 
-qt_find_modules(Widgets)
-
 set(target Utils)
 set(targetProcessStub qtcreator_process_stub)
 set(targetCtrlcStub qtcreator_ctrlc_stub)

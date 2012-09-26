@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Widgets)
-
 set(target QmlJS)
 
 add_definitions(-DQMLJS_BUILD_DIR -DQT_CREATOR)

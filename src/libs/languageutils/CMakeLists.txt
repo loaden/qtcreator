@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Core)
-
 set(target LanguageUtils)
 
 set(sources

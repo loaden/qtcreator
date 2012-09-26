@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Widgets)
-
 set(target ExtensionSystem)
 
 # Have to disable PCH support when using GCC cause this Error:

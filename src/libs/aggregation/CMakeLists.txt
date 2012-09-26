@@ -1,6 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Core)
 add_definitions(-DAGGREGATION_LIBRARY)
 
 set(target Aggregation)

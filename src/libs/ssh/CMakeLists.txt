@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Widgets)
-
 set(target QtcSsh)
 
 add_definitions(-DQSSH_LIBRARY)

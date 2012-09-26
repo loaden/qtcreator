@@ -1,7 +1,5 @@
 include(QtcLibrary)
 
-qt_find_modules(Widgets)
-
 set(target CPlusPlus)
 
 add_definitions(-DCPLUSPLUS_BUILD_LIB)
