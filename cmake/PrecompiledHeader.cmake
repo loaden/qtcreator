@@ -2,6 +2,9 @@
 cmake_minimum_required(VERSION 2.8.9 FATAL_ERROR)
 
 macro(set_precompiled_header target language precompiledHeader precompiledSource)
+    if(TARGET ${target})
+        message(FATAL_ERROR "The first argument must be an non-existent target.")
+    endif()
     set(${target}_PCH_LANGUAGE ${language}
         CACHE INTERNAL "Which language (C/CXX) using for PCH support"
     )
@@ -37,6 +40,9 @@ macro(set_precompiled_header target language precompiledHeader precompiledSource
 endmacro()
 
 macro(use_precompiled_header target)
+    if(NOT TARGET ${target})
+        message(FATAL_ERROR "The first argument must be an existing target.")
+    endif()
     get_target_property(targetAutomoc ${target} AUTOMOC)
     if(CMAKE_AUTOMOC OR targetAutomoc)
         set(automocFile ${target}_automoc.cpp)
