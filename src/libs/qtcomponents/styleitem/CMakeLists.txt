@@ -25,6 +25,7 @@ set(mocheaders
     qwheelarea.h
 )
 
+qt_include_modules(Quick1)
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
 qtc_set_pch(${target} CXX ../../../shared/qtcreator_gui_pch.h precompiled)

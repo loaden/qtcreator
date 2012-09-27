@@ -1,3 +1,10 @@
+macro(qt_include_modules)
+    foreach(module ${ARGN})
+        find_package(Qt5${module})
+        include_directories(${Qt5${module}_INCLUDE_DIRS})
+    endforeach()
+endmacro()
+
 macro(qt_find_modules)
     foreach(module ${ARGN})
         find_package(Qt5${module})
