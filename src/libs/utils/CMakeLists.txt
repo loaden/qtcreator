@@ -180,10 +180,6 @@ set(qrcfiles
     utils.qrc
 )
 
-set(qrcfiles
-    utils.qrc
-)
-
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
