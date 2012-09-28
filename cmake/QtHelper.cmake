@@ -5,6 +5,13 @@ macro(qt_include_modules)
     endforeach()
 endmacro()
 
+macro(qt_include_private_modules)
+    foreach(module ${ARGN})
+        find_package(Qt5${module})
+        include_directories(${Qt5${module}_PRIVATE_INCLUDE_DIRS})
+    endforeach()
+endmacro()
+
 macro(qt_find_modules)
     foreach(module ${ARGN})
         find_package(Qt5${module})
