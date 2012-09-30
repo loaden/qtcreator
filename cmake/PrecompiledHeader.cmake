@@ -85,8 +85,10 @@ function(use_msvc_precompiled_header target)
         return()
     endif()
     set(pchBinaryFile ${${target}_PCH_BINARY_FILE})
-    set_source_files_properties(${ARGN} PROPERTIES
+    set_property(SOURCE ${ARGN} APPEND_STRING PROPERTY
         COMPILE_FLAGS "/Yu\"${pchBinaryFile}\" /FI\"${pchBinaryFile}\" /Fp\"${pchBinaryFile}\""
+    )
+    set_property(SOURCE ${ARGN} APPEND PROPERTY
         OBJECT_DEPENDS ${pchBinaryFile}
     )
 endfunction()
@@ -137,8 +139,10 @@ function(use_gcc_precompiled_header target)
         return()
     endif()
     set(pchHeaderFile ${${target}_PCH_NEW_HEADER_FILE})
-    set_source_files_properties(${ARGN} PROPERTIES
+    set_property(SOURCE ${ARGN} APPEND_STRING PROPERTY
         COMPILE_FLAGS "-include \"${pchHeaderFile}\" -Winvalid-pch"
+    )
+    set_property(SOURCE ${ARGN} APPEND PROPERTY
         OBJECT_DEPENDS ${pchHeaderFile}
     )
 endfunction()
