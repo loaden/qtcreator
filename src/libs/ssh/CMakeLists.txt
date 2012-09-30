@@ -60,7 +60,7 @@ qt_generate_moc(qtsrcs ${mocsources})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qthdrs ${uifiles})
 
-qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

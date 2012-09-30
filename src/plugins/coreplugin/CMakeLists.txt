@@ -9,7 +9,7 @@ include_directories(
     ${CMAKE_BINARY_DIR}
     ${QTC_LIBS_SOURCE_PATH}
     ${QTC_PLUGINS_SOURCE_PATH}
-    ../../shared/scriptwrapper
+    ${QTC_SHARED_SOURCE_PATH}/scriptwrapper
     actionmanager
     dialogs
     editormanager
@@ -244,7 +244,7 @@ qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

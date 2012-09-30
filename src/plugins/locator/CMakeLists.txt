@@ -54,7 +54,7 @@ qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

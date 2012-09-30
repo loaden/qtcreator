@@ -2,7 +2,7 @@ include(PrecompiledHeader)
 
 macro(qtc_set_pch target)
     if(QTC_PCH_SUPPORT)
-        set_precompiled_header(${target} ${ARGN})
+        set_precompiled_header(${target} CXX ${ARGN})
     endif()
 endmacro()
 

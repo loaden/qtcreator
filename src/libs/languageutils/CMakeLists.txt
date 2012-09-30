@@ -9,7 +9,7 @@ set(sources
 
 add_definitions(-DLANGUAGEUTILS_BUILD_DIR)
 
-qtc_set_pch(${target} CXX ../../shared/qtcreator_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_pch.h precompiled)
 qtc_add_library(${target} SHARED
     ${sources}
     ${precompiled}
