@@ -3,7 +3,7 @@ include(QtcLibrary)
 set(target CPlusPlus)
 
 add_definitions(-DCPLUSPLUS_BUILD_LIB)
-include_directories(. ${QTC_LIBS_SOURCE_PATH}/3rdparty/cplusplus)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${QTC_LIBS_SOURCE_PATH}/3rdparty/cplusplus)
 
 set(sources
     ../3rdparty/cplusplus/AST.cpp
