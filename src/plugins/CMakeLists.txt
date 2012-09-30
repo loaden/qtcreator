@@ -2,4 +2,4 @@ add_subdirectory(coreplugin)
 add_subdirectory(find)
 add_subdirectory(locator)
 add_subdirectory(texteditor)
-
+add_subdirectory(projectexplorer)

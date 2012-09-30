@@ -1,0 +1,292 @@
+include(QtcPlugin)
+
+set(target ProjectExplorer)
+
+add_definitions(-DPROJECTEXPLORER_LIBRARY -DQTC_CPU=X86Architecture)
+
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+include_directories(
+    ${QTC_LIBS_SOURCE_PATH}
+    ${QTC_LIBS_SOURCE_PATH}/utils
+    ${QTC_PLUGINS_SOURCE_PATH}
+    customwizard
+)
+
+if(WINDOWS)
+    set(sources
+        abstractmsvctoolchain.cpp
+        msvcparser.cpp
+        msvctoolchain.cpp
+        wincetoolchain.cpp
+        windebuginterface.cpp
+    )
+endif()
+
+set(sources ${sources}
+    abi.cpp
+    abiwidget.cpp
+    abstractprocessstep.cpp
+    allprojectsfilter.cpp
+    allprojectsfind.cpp
+    applicationlauncher.cpp
+    applicationrunconfiguration.cpp
+    appoutputpane.cpp
+    baseprojectwizarddialog.cpp
+    buildconfiguration.cpp
+    buildconfigurationmodel.cpp
+    buildenvironmentwidget.cpp
+    buildmanager.cpp
+    buildprogress.cpp
+    buildsettingspropertiespage.cpp
+    buildstep.cpp
+    buildsteplist.cpp
+    buildstepspage.cpp
+    cesdkhandler.cpp
+    clangparser.cpp
+    codestylesettingspropertiespage.cpp
+    compileoutputwindow.cpp
+    copytaskhandler.cpp
+    corelistenercheckingforrunningbuild.cpp
+    currentprojectfilter.cpp
+    currentprojectfind.cpp
+    customwizard/customwizard.cpp
+    customwizard/customwizardpage.cpp
+    customwizard/customwizardparameters.cpp
+    customwizard/customwizardpreprocessor.cpp
+    customwizard/customwizardscriptgenerator.cpp
+    dependenciespanel.cpp
+    deployablefile.cpp
+    deployconfiguration.cpp
+    deployconfigurationmodel.cpp
+    devicesupport/desktopdevice.cpp
+    devicesupport/desktopdevicefactory.cpp
+    devicesupport/deviceapplicationrunner.cpp
+    devicesupport/devicefactoryselectiondialog.cpp
+    devicesupport/devicemanager.cpp
+    devicesupport/devicemanagermodel.cpp
+    devicesupport/deviceprocessesdialog.cpp
+    devicesupport/deviceprocesslist.cpp
+    devicesupport/devicesettingspage.cpp
+    devicesupport/devicesettingswidget.cpp
+    devicesupport/deviceusedportsgatherer.cpp
+    devicesupport/idevice.cpp
+    devicesupport/idevicefactory.cpp
+    devicesupport/localprocesslist.cpp
+    devicesupport/sshdeviceprocesslist.cpp
+    doubletabwidget.cpp
+    editorconfiguration.cpp
+    editorsettingspropertiespage.cpp
+    environmentitemswidget.cpp
+    environmentwidget.cpp
+    foldernavigationwidget.cpp
+    gccparser.cpp
+    gcctoolchain.cpp
+    gnumakeparser.cpp
+    ioutputparser.cpp
+    kitchooser.cpp
+    kit.cpp
+    kitinformationconfigwidget.cpp
+    kitinformation.cpp
+    kitmanagerconfigwidget.cpp
+    kitmanager.cpp
+    kitmodel.cpp
+    kitoptionspage.cpp
+    ldparser.cpp
+    linuxiccparser.cpp
+    localapplicationruncontrol.cpp
+    miniprojecttargetselector.cpp
+    namedwidget.cpp
+    nodesvisitor.cpp
+    pluginfilefactory.cpp
+    processparameters.cpp
+    processstep.cpp
+    projectconfiguration.cpp
+    project.cpp
+    projectexplorer.cpp
+    projectexplorersettingspage.cpp
+    projectfilewizardextension.cpp
+    projectmodels.cpp
+    projectnodes.cpp
+    projecttreewidget.cpp
+    projectwelcomepage.cpp
+    projectwindow.cpp
+    projectwizardpage.cpp
+    publishing/publishingwizardselectiondialog.cpp
+    runconfiguration.cpp
+    runconfigurationmodel.cpp
+    runsettingspropertiespage.cpp
+    session.cpp
+    sessiondialog.cpp
+    settingsaccessor.cpp
+    showineditortaskhandler.cpp
+    showoutputtaskhandler.cpp
+    target.cpp
+    targetselector.cpp
+    targetsettingspanel.cpp
+    targetsettingswidget.cpp
+    task.cpp
+    taskhub.cpp
+    taskmodel.cpp
+    taskwindow.cpp
+    toolchainconfigwidget.cpp
+    toolchain.cpp
+    toolchainmanager.cpp
+    toolchainoptionspage.cpp
+    vcsannotatetaskhandler.cpp
+)
+
+set(mocsources
+    appoutputpane.cpp
+    compileoutputwindow.cpp
+    devicesupport/deviceprocessesdialog.cpp
+    foldernavigationwidget.cpp
+    taskwindow.cpp
+)
+
+set(mocheaders
+    abiwidget.h
+    abstractprocessstep.h
+    allprojectsfilter.h
+    allprojectsfind.h
+    applicationlauncher.h
+    applicationrunconfiguration.h
+    appoutputpane.h
+    baseprojectwizarddialog.h
+    buildconfiguration.h
+    buildconfigurationmodel.h
+    buildenvironmentwidget.h
+    buildmanager.h
+    buildprogress.h
+    buildsettingspropertiespage.h
+    buildstep.h
+    buildsteplist.h
+    buildstepspage.h
+    clangparser.h
+    codestylesettingspropertiespage.h
+    compileoutputwindow.h
+    copytaskhandler.h
+    corelistenercheckingforrunningbuild.h
+    currentprojectfilter.h
+    currentprojectfind.h
+    customwizard/customwizard.h
+    customwizard/customwizardpage.h
+    dependenciespanel.h
+    deployconfiguration.h
+    deployconfigurationmodel.h
+    devicesupport/desktopdevicefactory.h
+    devicesupport/deviceapplicationrunner.h
+    devicesupport/devicefactoryselectiondialog.h
+    devicesupport/devicemanager.h
+    devicesupport/devicemanagermodel.h
+    devicesupport/deviceprocessesdialog.h
+    devicesupport/deviceprocesslist.h
+    devicesupport/devicesettingspage.h
+    devicesupport/devicesettingswidget.h
+    devicesupport/deviceusedportsgatherer.h
+    devicesupport/idevicefactory.h
+    devicesupport/idevicewidget.h
+    devicesupport/localprocesslist.h
+    devicesupport/sshdeviceprocesslist.h
+    doubletabwidget.h
+    editorconfiguration.h
+    editorsettingspropertiespage.h
+    environmentitemswidget.h
+    environmentwidget.h
+    foldernavigationwidget.h
+    gccparser.h
+    gcctoolchainfactories.h
+    gnumakeparser.h
+    ioutputparser.h
+    iprojectmanager.h
+    iprojectproperties.h
+    itaskhandler.h
+    kitchooser.h
+    kitconfigwidget.h
+    kitinformation.h
+    kitinformationconfigwidget.h
+    kitmanager.h
+    kitmanagerconfigwidget.h
+    kitmodel.h
+    kitoptionspage.h
+    ldparser.h
+    linuxiccparser.h
+    localapplicationruncontrol.h
+    miniprojecttargetselector.h
+    msvcparser.h
+    msvctoolchain.h
+    namedwidget.h
+    pluginfilefactory.h
+    processstep.h
+    project.h
+    projectconfiguration.h
+    projectexplorer.h
+    projectexplorersettingspage.h
+    projectfilewizardextension.h
+    projectmodels.h
+    projectnodes.h
+    projecttreewidget.h
+    projectwelcomepage.h
+    projectwindow.h
+    projectwizardpage.h
+    publishing/ipublishingwizardfactory.h
+    publishing/publishingwizardselectiondialog.h
+    runconfiguration.h
+    runconfigurationmodel.h
+    runsettingspropertiespage.h
+    session.h
+    sessiondialog.h
+    showineditortaskhandler.h
+    showoutputtaskhandler.h
+    target.h
+    targetselector.h
+    targetsettingspanel.h
+    targetsettingswidget.h
+    taskhub.h
+    taskmodel.h
+    taskwindow.h
+    toolchain.h
+    toolchainconfigwidget.h
+    toolchainmanager.h
+    toolchainoptionspage.h
+    vcsannotatetaskhandler.h
+    wincetoolchain.h
+    windebuginterface.h
+)
+
+set(uifiles
+    codestylesettingspropertiespage.ui
+    devicesupport/devicefactoryselectiondialog.ui
+    devicesupport/devicesettingswidget.ui
+    doubletabwidget.ui
+    editorsettingspropertiespage.ui
+    processstep.ui
+    projectexplorersettingspage.ui
+    projectwizardpage.ui
+    publishing/publishingwizardselectiondialog.ui
+    sessiondialog.ui
+    targetsettingswidget.ui
+)
+
+set(qrcfiles
+    projectexplorer.qrc
+)
+
+qt_add_resources(qtsrcs ${qrcfiles})
+qt_wrap_cpp(qtsrcs ${mocheaders})
+qt_generate_moc(qtincs ${mocsources})
+qt_wrap_ui(qtincs ${uifiles})
+
+qtc_set_pch(${target} CXX ../../shared/qtcreator_gui_pch.h precompiled)
+qtc_add_plugin(${target}
+    ${sources}
+    ${qtsrcs}
+    ${qtincs}
+    ${precompiled}
+)
+
+target_link_libraries(${target} Utils QtcSsh Core Find Locator TextEditor)
+
+qt_use_modules(${target} Widgets Concurrent Network Script Quick1)
+qtc_use_pch(${target} ${sources} ${qtsrcs})
+
+#qt_trace_moc_files(h cpp)
