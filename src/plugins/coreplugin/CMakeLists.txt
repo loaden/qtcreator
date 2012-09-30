@@ -263,4 +263,12 @@ target_link_libraries(${target} Utils ExtensionSystem)
 qt_use_modules(${target} Widgets Concurrent Script PrintSupport Sql Help)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
+if(UNIX)
+    foreach(size 16 24 32 48 64 128 256 512)
+        install(FILES images/logo/${size}/qtcreator.png
+            DESTINATION share/icons/hicolor/${size}x${size}/apps
+        )
+    endforeach()
+endif()
+
 #qt_trace_moc_files(h cpp)
