@@ -3,7 +3,7 @@ include(QtcLibrary)
 set(target ExtensionSystem)
 
 add_definitions(-DEXTENSIONSYSTEM_LIBRARY)
-include_directories(${QTC_LIBS_SOURCE_PATH} ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${QTC_LIBS_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
     pluginerrorview.cpp
@@ -49,7 +49,7 @@ qt_wrap_ui(qthdrs ${uifiles})
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

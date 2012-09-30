@@ -6,7 +6,7 @@ set(sources
     botan.cpp
 )
 
-qtc_set_pch(${target} ../precompiled_headers/botan_pch.h)
+qtc_set_pch(${target} ${QTC_3RDPARTY_SOURCE_DIR}/precompiled_headers/botan_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
 )

@@ -60,14 +60,14 @@ qt_generate_moc(qtsrcs ${mocsources})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qthdrs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}
     ${qthdrs}
 )
 
-include_directories(${QTC_LIBS_SOURCE_PATH}/3rdparty ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${QTC_LIBS_SOURCE_DIR}/3rdparty ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(${target} Botan)
 qt_use_modules(${target} Widgets Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})

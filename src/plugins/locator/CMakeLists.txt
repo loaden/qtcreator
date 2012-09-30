@@ -6,8 +6,8 @@ add_definitions(-DLOCATOR_LIBRARY)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_LIBS_SOURCE_PATH}
-    ${QTC_PLUGINS_SOURCE_PATH}
+    ${QTC_LIBS_SOURCE_DIR}
+    ${QTC_PLUGINS_SOURCE_DIR}
 )
 
 set(sources
@@ -54,7 +54,7 @@ qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

@@ -28,7 +28,7 @@ set(mocheaders
 qt_include_modules(Quick1)
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

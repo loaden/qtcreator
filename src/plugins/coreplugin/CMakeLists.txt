@@ -7,9 +7,9 @@ add_definitions(-DCORE_LIBRARY)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(
     ${CMAKE_BINARY_DIR}
-    ${QTC_LIBS_SOURCE_PATH}
-    ${QTC_PLUGINS_SOURCE_PATH}
-    ${QTC_SHARED_SOURCE_PATH}/scriptwrapper
+    ${QTC_LIBS_SOURCE_DIR}
+    ${QTC_PLUGINS_SOURCE_DIR}
+    ${QTC_SHARED_SOURCE_DIR}/scriptwrapper
     actionmanager
     dialogs
     editormanager
@@ -119,7 +119,6 @@ set(sources ${sources}
 
 set(mocsources
     basefilewizard.cpp
-    dialogs/newdialog.cpp
     mimetypesettings.cpp
     progressmanager/futureprogress.cpp
 )
@@ -244,7 +243,7 @@ qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

@@ -6,9 +6,9 @@ add_definitions(-DPROJECTEXPLORER_LIBRARY -DQTC_CPU=X86Architecture)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(
-    ${QTC_LIBS_SOURCE_PATH}
-    ${QTC_LIBS_SOURCE_PATH}/utils
-    ${QTC_PLUGINS_SOURCE_PATH}
+    ${QTC_LIBS_SOURCE_DIR}
+    ${QTC_LIBS_SOURCE_DIR}/utils
+    ${QTC_PLUGINS_SOURCE_DIR}
     customwizard
 )
 
@@ -276,7 +276,7 @@ qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}
