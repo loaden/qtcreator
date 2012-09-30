@@ -60,12 +60,11 @@ qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}
     ${qtincs}
-    ${precompiled}
 )
 
 target_link_libraries(${target} Utils CPlusPlus Core TextEditor CppTools ProjectExplorer)

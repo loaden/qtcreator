@@ -220,12 +220,11 @@ qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}
     ${qtincs}
-    ${precompiled}
 )
 
 target_link_libraries(${target} Utils Core Find Locator)

@@ -5,7 +5,7 @@ else()
 endif()
 
 macro(qtc_add_library target)
-    add_library(${target} ${ARGN})
+    add_library(${target} ${ARGN} ${pchSrcVar})
     set_target_properties(${target} PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_LIBRARY_PATH}
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${QTC_LIBRARY_PATH}

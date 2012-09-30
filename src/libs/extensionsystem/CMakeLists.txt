@@ -49,12 +49,11 @@ qt_wrap_ui(qthdrs ${uifiles})
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h precompiled)
+qtc_set_pch(${target} ${QTC_SHARED_SOURCE_PATH}/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}
     ${qthdrs}
-    ${precompiled}
 )
 
 target_link_libraries(${target} Aggregation)

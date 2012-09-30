@@ -6,10 +6,9 @@ set(sources
     botan.cpp
 )
 
-qtc_set_pch(${target} ../precompiled_headers/botan_pch.h precompiled)
+qtc_set_pch(${target} ../precompiled_headers/botan_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
-    ${precompiled}
 )
 
 set(defines -DBOTAN_DLL=Q_DECL_EXPORT)
