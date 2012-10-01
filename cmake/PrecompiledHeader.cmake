@@ -15,9 +15,9 @@ macro(set_precompiled_header target language precompiledHeader pchSourceVariable
     )
     if(MSVC)
         if(${language} STREQUAL CXX)
-            set(${pchSourceVariable} ${target}_pch.cpp)
+            set(${pchSourceVariable} ${target}_PCH.cpp)
         elseif(${language} STREQUAL C)
-            set(${pchSourceVariable} ${target}_pch.c)
+            set(${pchSourceVariable} ${target}_PCH.c)
         else()
             message(FATAL_ERROR "[${target}] Unknown language \"${language}\"")
             return()
@@ -62,7 +62,7 @@ macro(use_precompiled_header target)
 endmacro()
 
 function(add_msvc_precompiled_header target)
-    set(pchBinaryFile ${CMAKE_CURRENT_BINARY_DIR}/${target}_pch.pch)
+    set(pchBinaryFile ${CMAKE_CURRENT_BINARY_DIR}/${target}_PCH.pch)
     set_source_files_properties(${${${target}_PCH_SOURCE_VAR}} PROPERTIES
         COMPILE_FLAGS "/Yc\"${${target}_PCH_HEADER_FILE}\" /Fp\"${pchBinaryFile}\""
         OBJECT_OUTPUTS ${pchBinaryFile}
@@ -100,7 +100,7 @@ function(add_gcc_precompiled_header target)
         set(pchSearchPath -I"${pchHeaderPath}")
         separate_arguments(pchSearchPath)
     endif()
-    set(pchHeaderName ${target}_pch.h)
+    set(pchHeaderName ${target}_PCH.h)
     set(pchHeaderFile ${CMAKE_CURRENT_BINARY_DIR}/${pchHeaderName})
     set(pchBinaryFile ${CMAKE_CURRENT_BINARY_DIR}/${pchHeaderName}.gch)
     add_custom_command(OUTPUT ${pchHeaderFile}
