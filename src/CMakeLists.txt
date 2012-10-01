@@ -13,3 +13,4 @@ set(QTC_3RDPARTY_SOURCE_DIR "${CMAKE_SOURCE_DIR}/src/libs/3rdparty"
 
 add_subdirectory(libs)
 add_subdirectory(plugins)
+add_subdirectory(app)
