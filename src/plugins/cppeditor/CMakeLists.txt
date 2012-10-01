@@ -67,9 +67,8 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} Utils CPlusPlus Core TextEditor CppTools ProjectExplorer)
-
-qt_use_modules(${target} Widgets Concurrent)
+target_link_libraries(${target} TextEditor CppTools ProjectExplorer)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

@@ -53,9 +53,8 @@ qtc_add_plugin(${target}
     ${qtsrcs}
 )
 
-target_link_libraries(${target} LanguageUtils CPlusPlus Core ProjectExplorer CppTools TextEditor QtSupport)
-
-qt_use_modules(${target} Widgets Concurrent Network)
+target_link_libraries(${target} LINK_PRIVATE ProjectExplorer QtSupport TextEditor CppTools)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

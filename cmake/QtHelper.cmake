@@ -18,8 +18,8 @@ macro(qt_find_modules)
     endforeach()
 endmacro()
 
-macro(qt_use_modules target)
-    qt5_use_modules(${target} ${ARGN})
+macro(qt_use_modules target linkType)
+    qt5_use_modules(${target} ${linkType} ${ARGN})
 endmacro()
 
 macro(qt_generate_moc outfiles)

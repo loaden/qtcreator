@@ -91,7 +91,7 @@ set(qrcfiles
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
-qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
+qt_generate_moc_plus(qtincs "" .moc ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
 qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
@@ -101,7 +101,7 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} Utils QmlJS Core TextEditor ProjectExplorer)
+target_link_libraries(${target} QmlJS TextEditor ProjectExplorer)
 
 qt_use_modules(${target} Widgets Concurrent Network Quick1)
 qtc_use_pch(${target} ${sources} ${qtsrcs})

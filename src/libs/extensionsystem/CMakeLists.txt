@@ -56,8 +56,8 @@ qtc_add_library(${target} SHARED
     ${qthdrs}
 )
 
-target_link_libraries(${target} Aggregation)
-qt_use_modules(${target} Widgets)
+target_link_libraries(${target} LINK_PUBLIC Aggregation)
+qt_use_modules(${target} LINK_PRIVATE Widgets)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 # Should add this in the end to avoiding PCH generate bug

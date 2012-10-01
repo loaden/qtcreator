@@ -19,6 +19,6 @@ qtc_add_library(${target} SHARED
     ${qtsrcs}
 )
 
-qt_use_modules(${target} Core)
+qt_use_modules(${target} LINK_PRIVATE Core)
 
 #qt_trace_moc_files(h cpp)

@@ -283,9 +283,8 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} Utils QtcSsh Core Find Locator TextEditor)
-
-qt_use_modules(${target} Widgets Concurrent Network Script Quick1)
+target_link_libraries(${target} LINK_PRIVATE QtcSsh TextEditor)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent Network Quick1)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

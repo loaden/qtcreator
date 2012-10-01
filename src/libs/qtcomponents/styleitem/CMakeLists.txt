@@ -54,7 +54,7 @@ install(TARGETS ${target}
     ARCHIVE DESTINATION lib
 )
 
-qt_use_modules(${target} Widgets Script Quick1)
+qt_use_modules(${target} LINK_PRIVATE Widgets Script Quick1)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

@@ -31,8 +31,7 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} LanguageUtils Utils Core ProjectExplorer)
-
-qt_use_modules(${target} Widgets Network Quick1)
+target_link_libraries(${target} LINK_PRIVATE Core ProjectExplorer)
+qt_use_modules(${target} LINK_PRIVATE Widgets Network Quick1)
 
 #qt_trace_moc_files(h cpp)

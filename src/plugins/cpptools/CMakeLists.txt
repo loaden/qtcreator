@@ -95,9 +95,8 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} LanguageUtils CPlusPlus Core Find Locator TextEditor ProjectExplorer)
-
-qt_use_modules(${target} Widgets Concurrent)
+target_link_libraries(${target} LINK_PUBLIC CPlusPlus LINK_PRIVATE TextEditor ProjectExplorer)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

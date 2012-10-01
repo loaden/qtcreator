@@ -65,8 +65,8 @@ qtc_add_library(${target} SHARED
     ${qtsrcs}
 )
 
-target_link_libraries(${target} Utils LanguageUtils)
-qt_use_modules(${target} Widgets)
+target_link_libraries(${target} LINK_PRIVATE Utils LanguageUtils)
+qt_use_modules(${target} LINK_PRIVATE Widgets)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

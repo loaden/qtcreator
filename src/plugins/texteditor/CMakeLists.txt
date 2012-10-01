@@ -227,9 +227,8 @@ qtc_add_plugin(${target}
     ${qtincs}
 )
 
-target_link_libraries(${target} Utils Core Find Locator)
-
-qt_use_modules(${target} Widgets Concurrent PrintSupport Network Xml)
+target_link_libraries(${target} LINK_PUBLIC Core Find Locator)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent PrintSupport Network Xml)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

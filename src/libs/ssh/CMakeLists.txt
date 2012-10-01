@@ -68,8 +68,8 @@ qtc_add_library(${target} SHARED
 )
 
 include_directories(${QTC_3RDPARTY_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
-target_link_libraries(${target} Botan)
-qt_use_modules(${target} Widgets Network)
+target_link_libraries(${target} LINK_PRIVATE Botan)
+qt_use_modules(${target} LINK_PRIVATE Widgets Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

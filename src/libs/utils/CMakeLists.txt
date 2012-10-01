@@ -194,12 +194,12 @@ qtc_add_library(${target} SHARED
 )
 
 if(WINDOWS)
-    target_link_libraries(${target} user32 iphlpapi ws2_32)
+    target_link_libraries(${target} LINK_PRIVATE user32 iphlpapi ws2_32)
 else()
-    target_link_libraries(${target} X11)
+    target_link_libraries(${target} LINK_PRIVATE X11)
 endif()
 
-qt_use_modules(${target} Widgets Network Script Concurrent)
+qt_use_modules(${target} LINK_PRIVATE Widgets Network Script Concurrent)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 #qt_trace_moc_files(h cpp)

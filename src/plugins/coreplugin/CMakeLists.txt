@@ -251,14 +251,13 @@ qtc_add_plugin(${target}
 )
 
 if(WINDOWS)
-    target_link_libraries(${target} user32 ole32)
+    target_link_libraries(${target} LINK_PRIVATE user32 ole32)
 elseif(MACOSX)
-    target_link_libraries(${target} AppKit)
+    target_link_libraries(${target} LINK_PRIVATE AppKit)
 endif()
 
-target_link_libraries(${target} Utils ExtensionSystem)
-
-qt_use_modules(${target} Widgets Concurrent Script PrintSupport Sql Help)
+target_link_libraries(${target} LINK_PUBLIC Utils ExtensionSystem)
+qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent Script PrintSupport Sql Help)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
 if(UNIX)
