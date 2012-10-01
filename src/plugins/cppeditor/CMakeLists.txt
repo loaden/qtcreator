@@ -6,9 +6,9 @@ add_definitions(-DCPPEDITOR_LIBRARY)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
+    ${QTC_3RDPARTY_SOURCE_DIR}
+    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus
     ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_LIBS_SOURCE_DIR}/3rdparty
-    ${QTC_LIBS_SOURCE_DIR}/3rdparty/cplusplus
     ${QTC_LIBS_SOURCE_DIR}/cplusplus
     ${QTC_PLUGINS_SOURCE_DIR}
 )

@@ -3,7 +3,7 @@ include(QtcLibrary)
 set(target CPlusPlus)
 
 add_definitions(-DCPLUSPLUS_BUILD_LIB)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${QTC_LIBS_SOURCE_DIR}/3rdparty/cplusplus)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus)
 
 set(sources
     ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTClone.cpp

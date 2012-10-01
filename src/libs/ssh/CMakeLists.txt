@@ -67,7 +67,7 @@ qtc_add_library(${target} SHARED
     ${qthdrs}
 )
 
-include_directories(${QTC_LIBS_SOURCE_DIR}/3rdparty ${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${QTC_3RDPARTY_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(${target} Botan)
 qt_use_modules(${target} Widgets Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
