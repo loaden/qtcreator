@@ -27,9 +27,9 @@ function(qtc_generate_pluginspec target)
     set(specFile ${CMAKE_BINARY_DIR}/${QTC_PLUGIN_PATH}/${target}.pluginspec)
     if(${specInFile} IS_NEWER_THAN ${specFile})
         file(READ ${specInFile} specInContent)
-        string(REPLACE $$QTCREATOR_VERSION ${QTCREATOR_VERSION} specInContent ${specInContent})
-        string(REPLACE "\\\"" "\"" specInContent ${specInContent})
-        file(WRITE ${specFile} ${specInContent})
+        string(REPLACE $$QTCREATOR_VERSION ${QTCREATOR_VERSION} specInContent "${specInContent}")
+        string(REPLACE "\\\"" "\"" specInContent "${specInContent}")
+        file(WRITE ${specFile} "${specInContent}")
     endif()
     install(FILES ${specFile}
         DESTINATION ${QTC_PLUGIN_PATH}
