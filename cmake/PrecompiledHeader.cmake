@@ -117,7 +117,6 @@ function(add_gcc_precompiled_header target)
         return()
     endif()
     get_gcc_compile_flags(${target} compileFlags)
-    message(STATUS "[${target}] PCH compile flags is ${compileFlags}")
     add_custom_command(OUTPUT ${pchBinaryFile}
         COMMAND ${CMAKE_CXX_COMPILER} ${${target}_PCH_FLAGS} ${compileFlags} ${pchSearchPath} ${pchGenerator}
         DEPENDS ${pchHeaderFile}
