@@ -47,7 +47,7 @@ set_target_properties(${target} PROPERTIES
 )
 
 install(TARGETS ${target}
-    RUNTIME DESTINATION ${CMAKE_BINARY_DIR}/bin
+    RUNTIME DESTINATION bin
 )
 
 target_link_libraries(${target} ExtensionSystem)
