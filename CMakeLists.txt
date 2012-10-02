@@ -3,12 +3,26 @@ cmake_minimum_required(VERSION 2.8.9 FATAL_ERROR)
 project(qtcreator)
 
 set(QTCREATOR_VERSION 2.5.82)
-string(SUBSTRING ${QTCREATOR_VERSION} 0 1 QTCREATOR_VERSION_MAJOR)
-string(SUBSTRING ${QTCREATOR_VERSION} 2 1 QTCREATOR_VERSION_MINOR)
-string(SUBSTRING ${QTCREATOR_VERSION} 4 2 QTCREATOR_VERSION_RELEASE)
-configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/app/app_version.h.cmakein
-    ${CMAKE_CURRENT_BINARY_DIR}/app/app_version.h
+function(qtc_configure_file inFile outFile)
+    if(${inFile} IS_NEWER_THAN ${outFile})
+        string(SUBSTRING ${QTCREATOR_VERSION} 0 1 majorVersion)
+        string(SUBSTRING ${QTCREATOR_VERSION} 2 1 minorVersion)
+        string(SUBSTRING ${QTCREATOR_VERSION} 4 2 releaseVersion)
+        file(READ ${inFile} inContent)
+        string(REPLACE "$$replace(QTCREATOR_VERSION, \"^(\\\\d+)\\\\.\\\\d+\\\\.\\\\d+(-.*)?$\", \\\\1)"
+            ${majorVersion} inContent "${inContent}")
+        string(REPLACE "$$replace(QTCREATOR_VERSION, \"^\\\\d+\\\\.(\\\\d+)\\\\.\\\\d+(-.*)?$\", \\\\1)"
+            ${minorVersion} inContent "${inContent}")
+        string(REPLACE "$$replace(QTCREATOR_VERSION, \"^\\\\d+\\\\.\\\\d+\\\\.(\\\\d+)(-.*)?$\", \\\\1)"
+            ${releaseVersion} inContent "${inContent}")
+        string(REPLACE "$\${QTCREATOR_VERSION}" ${QTCREATOR_VERSION} inContent "${inContent}")
+        string(REPLACE "\\\"" "\"" inContent "${inContent}")
+        file(WRITE ${outFile} "${inContent}")
+    endif()
+endfunction()
+qtc_configure_file(
+    ${CMAKE_SOURCE_DIR}/src/app/app_version.h.in
+    ${CMAKE_BINARY_DIR}/src/app/app_version.h
 )
 
 # Set a default build type if none was specified

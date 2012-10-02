@@ -6,7 +6,7 @@ add_definitions(-DCORE_LIBRARY)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(
-    ${CMAKE_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}/src
     ${QTC_LIBS_SOURCE_DIR}
     ${QTC_PLUGINS_SOURCE_DIR}
     ${QTC_SHARED_SOURCE_DIR}/scriptwrapper

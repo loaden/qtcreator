@@ -1,7 +1,7 @@
 set(target ${PROJECT_NAME})
 
 include_directories(
-    ${CMAKE_BINARY_DIR}
+    ${CMAKE_BINARY_DIR}/src
     ${QTC_LIBS_SOURCE_DIR}
     ${QTC_SHARED_SOURCE_DIR}/qtlockedfile
     ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication
