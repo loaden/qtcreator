@@ -34,6 +34,7 @@ macro(set_precompiled_header target language precompiledHeader pchSourceVariable
         add_custom_target(${target}_pch)
         add_custom_command(TARGET ${target}_pch POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E touch_nocreate ${CMAKE_CURRENT_BINARY_DIR}/${${pchSourceVariable}}
+            DEPENDS ${pchHeaderFile}
             COMMENT "[${target}] Update precompiled source - done"
         )
     endif()
