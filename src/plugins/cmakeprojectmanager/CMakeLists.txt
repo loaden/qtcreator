@@ -3,6 +3,7 @@ include(QtcPlugin)
 set(target CMakeProjectManager)
 
 include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
     ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus
     ${QTC_LIBS_SOURCE_DIR}
     ${QTC_LIBS_SOURCE_DIR}/cplusplus
