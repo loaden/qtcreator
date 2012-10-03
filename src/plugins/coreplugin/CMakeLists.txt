@@ -283,13 +283,11 @@ foreach(tool ${externalTools})
     )
 endforeach()
 
-foreach(resource schemes scripts)
-    file(COPY ${CMAKE_SOURCE_DIR}/share/qtcreator/${resource}
-        DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator
-    )
-    install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/${resource}
-        DESTINATION share/qtcreator
-    )
-endforeach()
+file(COPY ${CMAKE_SOURCE_DIR}/share/qtcreator/schemes
+    DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator
+)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/schemes
+    DESTINATION share/qtcreator
+)
 
 #qt_detect_moc_files("" h cpp)
