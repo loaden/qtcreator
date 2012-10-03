@@ -3,11 +3,8 @@ include(QtcPlugin)
 set(target TextEditor)
 
 add_definitions(-DTEXTEDITOR_LIBRARY)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_PLUGINS_SOURCE_DIR}
     codeassist
     generichighlighter
     snippets
@@ -220,7 +217,7 @@ qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

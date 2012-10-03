@@ -4,10 +4,8 @@ set(target CMakeProjectManager)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_LIBS_SOURCE_DIR}/cplusplus
-    ${QTC_PLUGINS_SOURCE_DIR}
+    ../../libs/3rdparty/cplusplus
+    ../../libs/cplusplus
 )
 
 set(sources
@@ -48,7 +46,7 @@ set(qrcfiles
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

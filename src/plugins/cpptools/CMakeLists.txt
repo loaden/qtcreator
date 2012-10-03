@@ -6,11 +6,9 @@ add_definitions(-DCPPTOOLS_LIBRARY)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include_directories(
-    ${QTC_3RDPARTY_SOURCE_DIR}
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_LIBS_SOURCE_DIR}/cplusplus
-    ${QTC_PLUGINS_SOURCE_DIR}
+    ../../libs/3rdparty
+    ../../libs/3rdparty/cplusplus
+    ../../libs/cplusplus
 )
 
 set(sources
@@ -88,7 +86,7 @@ qt_wrap_cpp(qtsrcs ${mocspecial})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

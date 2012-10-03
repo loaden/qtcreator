@@ -3,7 +3,7 @@ include(QtcLibrary)
 set(target QmlJS)
 
 add_definitions(-DQMLJS_BUILD_DIR -DQT_CREATOR)
-include_directories(${QTC_LIBS_SOURCE_DIR})
+include_directories(..)
 
 set(sources
     jsoncheck.cpp
@@ -59,7 +59,7 @@ qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocspecial})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

@@ -6,11 +6,9 @@ add_definitions(-DCPPEDITOR_LIBRARY)
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_3RDPARTY_SOURCE_DIR}
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_LIBS_SOURCE_DIR}/cplusplus
-    ${QTC_PLUGINS_SOURCE_DIR}
+    ../../libs/3rdparty
+    ../../libs/3rdparty/cplusplus
+    ../../libs/cplusplus
 )
 
 set(sources
@@ -60,7 +58,7 @@ qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

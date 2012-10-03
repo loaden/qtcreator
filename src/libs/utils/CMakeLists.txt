@@ -23,7 +23,7 @@ endif()
 add_definitions(-DQTCREATOR_UTILS_LIB)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-include_directories(${QTC_LIBS_SOURCE_DIR} ${CMAKE_BINARY_DIR}/src)
+include_directories(.. ${CMAKE_BINARY_DIR}/src)
 
 if(WINDOWS)
     set(sources
@@ -186,7 +186,7 @@ qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs moc_ .cpp ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

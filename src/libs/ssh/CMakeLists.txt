@@ -3,6 +3,11 @@ include(QtcLibrary)
 set(target QtcSsh)
 
 add_definitions(-DQSSH_LIBRARY)
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ../3rdparty
+)
+
 if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /wd4267")
 endif()
@@ -60,14 +65,13 @@ qt_generate_moc(qtsrcs ${mocsources})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_wrap_ui(qthdrs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}
     ${qthdrs}
 )
 
-include_directories(${QTC_3RDPARTY_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(${target} LINK_PRIVATE Botan)
 qt_use_modules(${target} LINK_PRIVATE Widgets Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})

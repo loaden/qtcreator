@@ -3,43 +3,43 @@ include(QtcLibrary)
 set(target CPlusPlus)
 
 add_definitions(-DCPLUSPLUS_BUILD_LIB)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus)
+include_directories(. ../3rdparty/cplusplus)
 
 set(sources
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTClone.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/AST.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTMatch0.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTMatcher.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTPatternBuilder.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTVisit.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ASTVisitor.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Bind.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Control.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/CoreTypes.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/DiagnosticClient.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/FullySpecifiedType.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Keywords.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Lexer.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Literals.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/LiteralTable.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/MemoryPool.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Name.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Names.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/NameVisitor.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ObjectiveCAtKeywords.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/ObjectiveCTypeQualifiers.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Parser.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/QtContextKeywords.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Scope.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Symbol.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Symbols.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/SymbolVisitor.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Templates.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Token.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/TranslationUnit.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/Type.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/TypeMatcher.cpp
-    ${QTC_3RDPARTY_SOURCE_DIR}/cplusplus/TypeVisitor.cpp
+    ../3rdparty/cplusplus/ASTClone.cpp
+    ../3rdparty/cplusplus/AST.cpp
+    ../3rdparty/cplusplus/ASTMatch0.cpp
+    ../3rdparty/cplusplus/ASTMatcher.cpp
+    ../3rdparty/cplusplus/ASTPatternBuilder.cpp
+    ../3rdparty/cplusplus/ASTVisit.cpp
+    ../3rdparty/cplusplus/ASTVisitor.cpp
+    ../3rdparty/cplusplus/Bind.cpp
+    ../3rdparty/cplusplus/Control.cpp
+    ../3rdparty/cplusplus/CoreTypes.cpp
+    ../3rdparty/cplusplus/DiagnosticClient.cpp
+    ../3rdparty/cplusplus/FullySpecifiedType.cpp
+    ../3rdparty/cplusplus/Keywords.cpp
+    ../3rdparty/cplusplus/Lexer.cpp
+    ../3rdparty/cplusplus/Literals.cpp
+    ../3rdparty/cplusplus/LiteralTable.cpp
+    ../3rdparty/cplusplus/MemoryPool.cpp
+    ../3rdparty/cplusplus/Name.cpp
+    ../3rdparty/cplusplus/Names.cpp
+    ../3rdparty/cplusplus/NameVisitor.cpp
+    ../3rdparty/cplusplus/ObjectiveCAtKeywords.cpp
+    ../3rdparty/cplusplus/ObjectiveCTypeQualifiers.cpp
+    ../3rdparty/cplusplus/Parser.cpp
+    ../3rdparty/cplusplus/QtContextKeywords.cpp
+    ../3rdparty/cplusplus/Scope.cpp
+    ../3rdparty/cplusplus/Symbol.cpp
+    ../3rdparty/cplusplus/Symbols.cpp
+    ../3rdparty/cplusplus/SymbolVisitor.cpp
+    ../3rdparty/cplusplus/Templates.cpp
+    ../3rdparty/cplusplus/Token.cpp
+    ../3rdparty/cplusplus/TranslationUnit.cpp
+    ../3rdparty/cplusplus/Type.cpp
+    ../3rdparty/cplusplus/TypeMatcher.cpp
+    ../3rdparty/cplusplus/TypeVisitor.cpp
     ASTParent.cpp
     ASTPath.cpp
     BackwardsScanner.cpp
@@ -84,7 +84,7 @@ set(qrcfiles
 qt_add_resources(qtsrcs ${qrcfiles})
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_library(${target} SHARED
     ${sources}
     ${qtsrcs}

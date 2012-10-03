@@ -1,6 +1,7 @@
 set(QTC_PLUGIN_PATH lib/qtcreator/plugins/Nokia)
 
 macro(qtc_add_plugin target)
+    include_directories(${CMAKE_SOURCE_DIR}/src/libs ${CMAKE_SOURCE_DIR}/src/plugins)
     add_library(${target} SHARED ${ARGN} ${pchSrcVar})
     qtc_generate_pluginspec(${target})
     qtc_generate_json(${target})

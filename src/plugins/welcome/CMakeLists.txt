@@ -3,12 +3,7 @@ include(QtcPlugin)
 set(target Welcome)
 
 add_definitions(-DWELCOME_LIBRARY)
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_PLUGINS_SOURCE_DIR}
-)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
     welcomeplugin.cpp

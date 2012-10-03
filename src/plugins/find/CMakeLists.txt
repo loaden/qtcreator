@@ -3,12 +3,7 @@ include(QtcPlugin)
 set(target Find)
 
 add_definitions(-DFIND_LIBRARY)
-
-include_directories(
-    ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_PLUGINS_SOURCE_DIR}
-)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(sources
     basetextfind.cpp
@@ -62,7 +57,7 @@ qt_wrap_cpp(qtsrcs ${mocheaders})
 qt_generate_moc(qtincs ${mocsources})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}

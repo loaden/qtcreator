@@ -2,39 +2,39 @@ set(target ${PROJECT_NAME})
 
 include_directories(
     ${CMAKE_BINARY_DIR}/src
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_SHARED_SOURCE_DIR}/qtlockedfile
-    ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication
+    ../libs
+    ../shared/qtlockedfile
+    ../shared/qtsingleapplication
 )
 
 if(WINDOWS)
     set(sources
-        ${QTC_SHARED_SOURCE_DIR}/qtlockedfile/qtlockedfile_win.cpp
+        ../shared/qtlockedfile/qtlockedfile_win.cpp
     )
     set(rcfiles
         qtcreator.rc
     )
 else()
     set(sources
-        ${QTC_SHARED_SOURCE_DIR}/qtlockedfile/qtlockedfile_unix.cpp
+        ../shared/qtlockedfile/qtlockedfile_unix.cpp
     )
 endif()
 
 set(sources ${sources}
-    ${QTC_SHARED_SOURCE_DIR}/qtlockedfile/qtlockedfile.cpp
-    ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication/qtlocalpeer.cpp
-    ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication/qtsingleapplication.cpp
+    ../shared/qtlockedfile/qtlockedfile.cpp
+    ../shared/qtsingleapplication/qtlocalpeer.cpp
+    ../shared/qtsingleapplication/qtsingleapplication.cpp
     main.cpp
 )
 
 set(mocheaders
-    ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication/qtlocalpeer.h
-    ${QTC_SHARED_SOURCE_DIR}/qtsingleapplication/qtsingleapplication.h
+    ../shared/qtsingleapplication/qtlocalpeer.h
+    ../shared/qtsingleapplication/qtsingleapplication.h
 )
 
 qt_wrap_cpp(qtsrcs ${mocheaders})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../shared/qtcreator_gui_pch.h)
 add_executable(${target}
     ${sources}
     ${qtsrcs}
@@ -65,4 +65,4 @@ endif()
 
 include(QtcDefs)
 
-#qt_detect_moc_files("${QTC_SHARED_SOURCE_DIR}/qtsingleapplication;${QTC_SHARED_SOURCE_DIR}/qtlockedfile" h cpp)
+#qt_detect_moc_files("../shared/qtsingleapplication;../shared/qtlockedfile" h cpp)

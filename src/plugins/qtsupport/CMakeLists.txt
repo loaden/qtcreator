@@ -14,20 +14,18 @@ add_definitions(
 
 include_directories(
     ${CMAKE_CURRENT_BINARY_DIR}
-    ${QTC_LIBS_SOURCE_DIR}
-    ${QTC_PLUGINS_SOURCE_DIR}
-    ${QTC_SHARED_SOURCE_DIR}
+    ../../shared
 )
 
 set(sources
-    ${QTC_SHARED_SOURCE_DIR}/proparser/qmakeglobals.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/qmakeparser.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/qmakeevaluator.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/profileevaluator.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/qmakebuiltins.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/proitems.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/prowriter.cpp
-    ${QTC_SHARED_SOURCE_DIR}/proparser/ioutils.cpp
+    ../../shared/proparser/qmakeglobals.cpp
+    ../../shared/proparser/qmakeparser.cpp
+    ../../shared/proparser/qmakeevaluator.cpp
+    ../../shared/proparser/profileevaluator.cpp
+    ../../shared/proparser/qmakebuiltins.cpp
+    ../../shared/proparser/proitems.cpp
+    ../../shared/proparser/prowriter.cpp
+    ../../shared/proparser/ioutils.cpp
     qtsupportplugin.cpp
     qtkitconfigwidget.cpp
     qtkitinformation.cpp
@@ -85,7 +83,7 @@ set(uifiles
 )
 
 set(qrcfiles
-    ${QTC_SHARED_SOURCE_DIR}/proparser/proparser.qrc
+    ../../shared/proparser/proparser.qrc
 )
 
 qt_add_resources(qtsrcs ${qrcfiles})
@@ -94,7 +92,7 @@ qt_generate_moc(qtincs ${mocsources})
 qt_generate_moc_plus(qtincs "" .moc ${mocspecial})
 qt_wrap_ui(qtincs ${uifiles})
 
-qtc_set_pch(${target} ${QTC_SHARED_SOURCE_DIR}/qtcreator_gui_pch.h)
+qtc_set_pch(${target} ../../shared/qtcreator_gui_pch.h)
 qtc_add_plugin(${target}
     ${sources}
     ${qtsrcs}
