@@ -8,7 +8,7 @@ macro(qtc_add_plugin target)
     set_target_properties(${target} PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${QTC_PLUGIN_PATH}
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${QTC_PLUGIN_PATH}
-        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib
+        ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     )
     if(MINGW)
         set_target_properties(${target} PROPERTIES
@@ -19,7 +19,7 @@ macro(qtc_add_plugin target)
     install(TARGETS ${target}
         LIBRARY DESTINATION ${QTC_PLUGIN_PATH}
         RUNTIME DESTINATION ${QTC_PLUGIN_PATH}
-        ARCHIVE DESTINATION lib
+        ARCHIVE DESTINATION bin
     )
 endmacro()
 
