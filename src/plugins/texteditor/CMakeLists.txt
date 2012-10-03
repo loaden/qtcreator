@@ -231,11 +231,13 @@ target_link_libraries(${target} LINK_PUBLIC Core Find Locator)
 qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent PrintSupport Network Xml)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
-file(COPY ${CMAKE_SOURCE_DIR}/share/qtcreator/styles
-    DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator
-)
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/styles
-    DESTINATION share/qtcreator
-)
+foreach(resource generic-highlighter snippets styles)
+    file(COPY ${CMAKE_SOURCE_DIR}/share/qtcreator/${resource}
+        DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator
+    )
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/${resource}
+        DESTINATION share/qtcreator
+    )
+endforeach()
 
 #qt_trace_moc_files(h cpp)
