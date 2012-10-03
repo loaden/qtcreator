@@ -58,4 +58,13 @@ target_link_libraries(${target} LINK_PRIVATE ProjectExplorer QtSupport TextEdito
 qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
+foreach(wizard plaincapp-cmake plaincppapp-cmake)
+    file(COPY ${CMAKE_SOURCE_DIR}/share/qtcreator/templates/wizards/${wizard}
+        DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator/templates/wizards
+    )
+    install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/templates/wizards/${wizard}
+        DESTINATION share/qtcreator/templates/wizards
+    )
+endforeach()
+
 #qt_trace_moc_files(h cpp)
