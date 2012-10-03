@@ -64,3 +64,5 @@ if(UNIX)
 endif()
 
 include(QtcDefs)
+
+#qt_detect_moc_files("${QTC_SHARED_SOURCE_DIR}/qtsingleapplication;${QTC_SHARED_SOURCE_DIR}/qtlockedfile" h cpp)

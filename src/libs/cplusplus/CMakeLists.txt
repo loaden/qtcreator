@@ -97,4 +97,4 @@ endif()
 qt_use_modules(${target} LINK_PRIVATE Widgets)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
-#qt_trace_moc_files()
+#qt_detect_moc_files("" )

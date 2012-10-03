@@ -73,4 +73,4 @@ target_link_libraries(${target} LINK_PRIVATE Core)
 qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
-#qt_trace_moc_files(h cpp)
+#qt_detect_moc_files("" h cpp)

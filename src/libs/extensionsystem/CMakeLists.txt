@@ -63,4 +63,4 @@ qtc_use_pch(${target} ${sources} ${qtsrcs})
 # Should add this in the end to avoiding PCH generate bug
 add_definitions(-DIDE_TEST_DIR="${CMAKE_SOURCE_DIR}")
 
-#qt_trace_moc_files(h cpp)
+#qt_detect_moc_files("" h cpp)

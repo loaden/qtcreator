@@ -45,4 +45,4 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/share/qtcreator/welcomescreen
 
 include(QtcDefs)
 
-#qt_trace_moc_files(h cpp)
+#qt_detect_moc_files("" h cpp)

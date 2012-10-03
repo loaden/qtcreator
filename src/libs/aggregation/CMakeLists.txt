@@ -23,4 +23,4 @@ qtc_add_library(${target} SHARED
 qt_use_modules(${target} LINK_PRIVATE Core)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
-#qt_trace_moc_files(h cpp)
+#qt_detect_moc_files("" h cpp)

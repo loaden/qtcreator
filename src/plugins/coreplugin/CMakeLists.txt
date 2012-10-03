@@ -294,4 +294,4 @@ foreach(resource schemes scripts)
     )
 endforeach()
 
-#qt_trace_moc_files(h cpp)
+#qt_detect_moc_files("" h cpp)
