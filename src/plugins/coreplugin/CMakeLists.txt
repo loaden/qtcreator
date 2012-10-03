@@ -268,4 +268,21 @@ if(UNIX)
     endforeach()
 endif()
 
+set(externalTools lrelease lupdate qmlviewer sort)
+if(WINDOWS)
+    list(APPEND externalTools notepad_win)
+elseif(LINUX)
+    list(APPEND externalTools vi)
+elseif(MACOSX)
+    list(APPEND externalTools vi_mac)
+endif()
+foreach(tool ${externalTools})
+    file(COPY ${CMAKE_SOURCE_DIR}/src/share/qtcreator/externaltools/${tool}.xml
+        DESTINATION ${CMAKE_BINARY_DIR}/share/qtcreator/externaltools
+    )
+    install(FILES ${CMAKE_SOURCE_DIR}/src/share/qtcreator/externaltools/${tool}.xml
+        DESTINATION share/qtcreator/externaltools
+    )
+endforeach()
+
 #qt_trace_moc_files(h cpp)
