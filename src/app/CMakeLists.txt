@@ -54,4 +54,13 @@ target_link_libraries(${target} ExtensionSystem)
 qt_use_modules(${target} LINK_PRIVATE Core Widgets Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
+if(UNIX)
+    file(COPY ${CMAKE_SOURCE_DIR}/bin/qtcreator.sh
+        DESTINATION ${CMAKE_BINARY_DIR}/bin
+    )
+    install(FILES ${CMAKE_SOURCE_DIR}/bin/qtcreator.sh
+        DESTINATION bin
+    )
+endif()
+
 include(QtcDefs)
