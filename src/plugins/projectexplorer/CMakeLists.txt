@@ -143,7 +143,16 @@ set(mocsources
     taskwindow.cpp
 )
 
-set(mocheaders
+if (WINDOWS)
+    set(mocheaders
+        msvcparser.h
+        msvctoolchain.h
+        wincetoolchain.h
+        windebuginterface.h
+    )
+endif()
+
+set(mocheaders ${mocheaders}
     abiwidget.h
     abstractprocessstep.h
     allprojectsfilter.h
@@ -212,8 +221,6 @@ set(mocheaders
     linuxiccparser.h
     localapplicationruncontrol.h
     miniprojecttargetselector.h
-    msvcparser.h
-    msvctoolchain.h
     namedwidget.h
     pluginfilefactory.h
     processstep.h
@@ -249,8 +256,6 @@ set(mocheaders
     toolchainmanager.h
     toolchainoptionspage.h
     vcsannotatetaskhandler.h
-    wincetoolchain.h
-    windebuginterface.h
 )
 
 set(uifiles
