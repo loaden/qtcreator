@@ -17,4 +17,3 @@ macro(qtc_add_pch_compile_flags target)
         add_pch_compile_flags(${target} ${ARGN})
     endif()
 endmacro()
-
