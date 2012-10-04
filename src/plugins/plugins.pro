@@ -8,80 +8,13 @@ SUBDIRS   = plugin_coreplugin \
             plugin_find \
             plugin_texteditor \
             plugin_cppeditor \
-            plugin_bineditor \
-            plugin_imageviewer \
-            plugin_bookmarks \
             plugin_projectexplorer \
-            plugin_vcsbase \
-            plugin_perforce \
-            plugin_subversion \
-            plugin_git \
-            plugin_cvs \
             plugin_cpptools \
-            plugin_qtsupport \
-            plugin_qt4projectmanager \
             plugin_locator \
-            plugin_debugger \
             plugin_help \
-            plugin_cpaster \
-            plugin_cmakeprojectmanager \
-            plugin_autotoolsprojectmanager \
-            plugin_fakevim \
-            plugin_designer \
-            plugin_resourceeditor \
-            plugin_genericprojectmanager \
-            plugin_qmljseditor \
-            plugin_glsleditor \
-            plugin_mercurial \
-            plugin_bazaar \
-            plugin_classview \
-            plugin_tasklist \
-            plugin_analyzerbase \
-            plugin_qmljstools \
-            plugin_macros \
-            debugger/dumper.pro \
-            plugin_remotelinux \
-            plugin_android \
-            plugin_madde \
-            plugin_valgrind \
-            plugin_todo \
-            plugin_qnx
-
-isEmpty(IDE_PACKAGE_MODE) {
-    SUBDIRS += plugin_helloworld \
-               plugin_updateinfo
-} else:!isEmpty(UPDATEINFO_ENABLE) {
-    SUBDIRS += plugin_updateinfo
-}
-linux-* {
-     SUBDIRS += debugger/ptracepreload.pro
-}
-!macx:SUBDIRS += plugin_clearcase
+            plugin_cmakeprojectmanager
 
 include(../../qtcreator.pri)
-
-contains(QT_CONFIG, declarative)|contains(QT_CONFIG, quick1) {
-    SUBDIRS += \
-            plugin_qmlprojectmanager \
-            plugin_qmlprofiler
-
-    greaterThan(QT_MAJOR_VERSION, 4) {
-        SUBDIRS += plugin_qmldesigner
-    } else {
-        include(../private_headers.pri)
-        exists($${QT_PRIVATE_HEADERS}/QtDeclarative/private/qdeclarativecontext_p.h) {
-                SUBDIRS += plugin_qmldesigner
-        } else {
-            warning("QmlDesigner plugin has been disabled.")
-            warning("The plugin depends on private headers from QtDeclarative module.")
-            warning("To enable it, pass 'QT_PRIVATE_HEADERS=$QTDIR/include' to qmake, where $QTDIR is the source directory of qt.")
-        }
-    }
-} else {
-    warning("QmlProjectManager, QmlProfiler and QmlDesigner plugins have been disabled: The plugins require QtDeclarative (Qt 4.x) or QtQuick1 (Qt 5.x)");
-}
-
-include (debugger/lldb/guest/qtcreator-lldb.pri)
 
 plugin_coreplugin.subdir = coreplugin
 

@@ -27,18 +27,13 @@ DATA_DIRS = \
     welcomescreen \
     examplebrowser \
     snippets \
-    templates \
-    designer \
+    templates/wizards/plaincapp-cmake \
+    templates/wizards/plaincppapp-cmake \
     schemes \
     styles \
     rss \
-    dumper \
-    qmldesigner \
-    qmlicons \
-    qml \
-    qml-type-descriptions \
     generic-highlighter \
-    glsl
+
 macx: DATA_DIRS += scripts
 
 for(data_dir, DATA_DIRS) {
