@@ -52,7 +52,7 @@ qtc_add_plugin(${target}
     ${qtsrcs}
 )
 
-target_link_libraries(${target} LINK_PRIVATE ProjectExplorer QtSupport TextEditor CppTools)
+target_link_libraries(${target} LINK_PRIVATE ProjectExplorer TextEditor CppTools)
 qt_use_modules(${target} LINK_PRIVATE Widgets Concurrent Network)
 qtc_use_pch(${target} ${sources} ${qtsrcs})
 
