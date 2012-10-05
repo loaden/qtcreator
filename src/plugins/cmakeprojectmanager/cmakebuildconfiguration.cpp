@@ -39,9 +39,6 @@
 #include <projectexplorer/kitinformation.h>
 #include <projectexplorer/projectexplorerconstants.h>
 #include <projectexplorer/target.h>
-#include <qtsupport/baseqtversion.h>
-#include <qtsupport/qtparser.h>
-#include <qtsupport/qtkitinformation.h>
 #include <utils/qtcassert.h>
 
 #include <QInputDialog>
@@ -128,11 +125,6 @@ void CMakeBuildConfiguration::setBuildDirectory(const QString &buildDirectory)
 ProjectExplorer::IOutputParser *CMakeBuildConfiguration::createOutputParser() const
 {
     ProjectExplorer::IOutputParser *parserchain = new ProjectExplorer::GnuMakeParser;
-
-    int versionId = QtSupport::QtKitInformation::qtVersionId(target()->kit());
-    if (versionId >= 0)
-        parserchain->appendOutputParser(new QtSupport::QtParser);
-
     ProjectExplorer::ToolChain *tc = ProjectExplorer::ToolChainKitInformation::toolChain(target()->kit());
     if (tc)
         parserchain->appendOutputParser(tc->outputParser());

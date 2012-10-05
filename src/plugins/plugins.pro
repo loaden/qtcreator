@@ -225,7 +225,6 @@ plugin_cmakeprojectmanager.subdir = cmakeprojectmanager
 plugin_cmakeprojectmanager.depends = plugin_texteditor
 plugin_cmakeprojectmanager.depends += plugin_projectexplorer
 plugin_cmakeprojectmanager.depends += plugin_cpptools
-plugin_cmakeprojectmanager.depends += plugin_qtsupport
 
 plugin_autotoolsprojectmanager.subdir = autotoolsprojectmanager
 plugin_autotoolsprojectmanager.depends = plugin_projectexplorer

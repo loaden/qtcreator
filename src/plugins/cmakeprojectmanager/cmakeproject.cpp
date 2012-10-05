@@ -49,7 +49,6 @@
 #include <projectexplorer/toolchain.h>
 #include <projectexplorer/target.h>
 #include <projectexplorer/deployconfiguration.h>
-#include <qtsupport/customexecutablerunconfiguration.h>
 #include <cpptools/ModelManagerInterface.h>
 #include <extensionsystem/pluginmanager.h>
 #include <utils/qtcassert.h>
@@ -666,10 +665,6 @@ void CMakeProject::updateRunConfigurations(Target *t)
     foreach (ProjectExplorer::RunConfiguration *rc, t->runConfigurations()) {
         if (CMakeRunConfiguration* cmakeRC = qobject_cast<CMakeRunConfiguration *>(rc))
             existingRunConfigurations.insert(cmakeRC->title(), cmakeRC);
-        QtSupport::CustomExecutableRunConfiguration *ceRC =
-                qobject_cast<QtSupport::CustomExecutableRunConfiguration *>(rc);
-        if (ceRC && !ceRC->isConfigured())
-            toRemove << rc;
     }
 
     foreach (const CMakeBuildTarget &ct, buildTargets()) {
@@ -712,7 +707,8 @@ void CMakeProject::updateRunConfigurations(Target *t)
     if (t->runConfigurations().isEmpty()) {
         // Oh no, no run configuration,
         // create a custom executable run configuration
-        t->addRunConfiguration(new QtSupport::CustomExecutableRunConfiguration(t));
+        // TODO: What's wrong in here?
+        free(0);
     }
 }
 

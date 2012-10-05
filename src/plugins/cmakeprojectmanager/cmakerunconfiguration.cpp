@@ -35,7 +35,6 @@
 
 #include <coreplugin/coreconstants.h>
 #include <coreplugin/helpmanager.h>
-#include <qtsupport/debugginghelper.h>
 #include <projectexplorer/environmentwidget.h>
 #include <projectexplorer/target.h>
 
@@ -215,17 +214,12 @@ void CMakeRunConfiguration::setCommandLineArguments(const QString &newText)
 
 QString CMakeRunConfiguration::dumperLibrary() const
 {
-    Utils::FileName qmakePath = QtSupport::DebuggingHelperLibrary::findSystemQt(environment());
-    QString qtInstallData = QtSupport::DebuggingHelperLibrary::qtInstallDataDir(qmakePath);
-    QString dhl = QtSupport::DebuggingHelperLibrary::debuggingHelperLibraryByInstallData(qtInstallData);
-    return dhl;
+    return QString();
 }
 
 QStringList CMakeRunConfiguration::dumperLibraryLocations() const
 {
-    Utils::FileName qmakePath = QtSupport::DebuggingHelperLibrary::findSystemQt(environment());
-    QString qtInstallData = QtSupport::DebuggingHelperLibrary::qtInstallDataDir(qmakePath);
-    return QtSupport::DebuggingHelperLibrary::debuggingHelperLibraryDirectories(qtInstallData);
+    return QStringList();
 }
 
 Utils::Environment CMakeRunConfiguration::baseEnvironment() const

@@ -42,9 +42,6 @@
 #include <projectexplorer/target.h>
 #include <projectexplorer/toolchain.h>
 
-#include <qtsupport/qtkitinformation.h>
-#include <qtsupport/qtparser.h>
-
 #include <utils/qtcprocess.h>
 
 #include <QFormLayout>
@@ -202,9 +199,6 @@ bool MakeStep::init()
 
     setOutputParser(new ProjectExplorer::GnuMakeParser());
 
-    QtSupport::BaseQtVersion *version = QtSupport::QtKitInformation::qtVersion(target()->kit());
-    if (version)
-        appendOutputParser(new QtSupport::QtParser);
     if (tc)
         appendOutputParser(tc->outputParser());
     outputParser()->setWorkingDirectory(pp->effectiveWorkingDirectory());
