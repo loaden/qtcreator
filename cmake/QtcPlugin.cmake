@@ -10,6 +10,9 @@ macro(qtc_add_plugin target)
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${QTC_PLUGIN_PATH}
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     )
+    if(WINDOWS)
+        set_property(TARGET ${target} PROPERTY DEBUG_POSTFIX "d")
+    endif()
     if(MINGW)
         set_target_properties(${target} PROPERTIES
             PREFIX ""
