@@ -38,13 +38,12 @@ function(qtc_generate_pluginspec target)
 endfunction()
 
 function(qtc_generate_json target)
-    if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/${target}.json)
-       return()
-    endif()
     set(specFile ${CMAKE_BINARY_DIR}/${QTC_PLUGIN_PATH}/${target}.pluginspec)
     set(jsonFile ${CMAKE_CURRENT_BINARY_DIR}/${target}.json)
     if(${specFile} IS_NEWER_THAN ${jsonFile})
-        # FIXME: Read data from pluginspec file
-        file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/${target}.json "{}")
+        qt_get_binary_path(binaryPath)
+        execute_process(COMMAND ${binaryPath}/xmlpatterns
+            -no-format -output ${jsonFile} ${CMAKE_SOURCE_DIR}/src/pluginjsonmetadata.xsl ${specFile}
+        )
     endif()
 endfunction()
