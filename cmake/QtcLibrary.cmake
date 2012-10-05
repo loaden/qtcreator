@@ -11,6 +11,12 @@ macro(qtc_add_library target)
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${QTC_LIBRARY_PATH}
         ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     )
+    if(UNIX)
+        set_target_properties(${target} PROPERTIES
+            VERSION 1.0.0
+            SOVERSION 1.0
+        )
+    endif()
     if(MINGW)
         set_target_properties(${target} PROPERTIES
             PREFIX ""
