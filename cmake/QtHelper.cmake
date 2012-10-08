@@ -79,3 +79,5 @@ function(qt_get_binary_path qtBinaryPath)
     get_filename_component(binaryPath ${mocBinaryFile} PATH)
     set(${qtBinaryPath} ${binaryPath} PARENT_SCOPE)
 endfunction()
+
+qt_find_modules(Core Widgets)
