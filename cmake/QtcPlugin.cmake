@@ -1,4 +1,4 @@
-set(QTC_PLUGIN_PATH lib/qtcreator/plugins/Nokia)
+set(QTC_PLUGIN_PATH lib/qtcreator/plugins/QtProject)
 
 macro(qtc_add_plugin target)
     include_directories(${CMAKE_SOURCE_DIR}/src/libs ${CMAKE_SOURCE_DIR}/src/plugins)
