@@ -259,6 +259,18 @@ void HelpPlugin::extensionsInitialized()
     QStringList filesToRegister;
     // we might need to register creators inbuild help
     filesToRegister.append(ICore::documentationPath() + "/qtcreator.qch");
+    // Other qch files
+#ifdef Q_OS_WIN
+    const QString newDocPath = QDir::cleanPath(QCoreApplication::applicationDirPath()
+        + QLatin1String("/../../../../SHARE"));
+#else
+    const QString newDocPath = QDir::cleanPath(QCoreApplication::applicationDirPath()
+        + QLatin1String("/../doc"));
+#endif
+    QDir otherDocDir(newDocPath);
+    const QStringList &newDocFiles = otherDocDir.entryList(QStringList(QLatin1String("*.qch")));
+    foreach(const QString &doc, newDocFiles)
+        filesToRegister.append(QDir::cleanPath(newDocPath + QLatin1Char('/') + doc));
     HelpManager::registerDocumentation(filesToRegister);
 }
 
