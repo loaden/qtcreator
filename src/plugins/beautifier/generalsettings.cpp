@@ -52,8 +52,8 @@ void GeneralSettings::read()
     QSettings *s = Core::ICore::settings();
     s->beginGroup(Constants::SETTINGS_GROUP);
     s->beginGroup(GROUP);
-    m_autoFormatOnSave = s->value(AUTO_FORMAT_ON_SAVE, false).toBool();
-    m_autoFormatTool = s->value(AUTO_FORMAT_TOOL, QString()).toString();
+    m_autoFormatOnSave = s->value(AUTO_FORMAT_ON_SAVE, true).toBool();
+    m_autoFormatTool = s->value(AUTO_FORMAT_TOOL, QString(QLatin1String("Artistic Style"))).toString();
     setAutoFormatMime(s->value(AUTO_FORMAT_MIME, "text/x-c++src;text/x-c++hdr").toString());
     m_autoFormatOnlyCurrentProject = s->value(AUTO_FORMAT_ONLY_CURRENT_PROJECT, true).toBool();
     s->endGroup();

@@ -53,6 +53,7 @@
 #include <utils/environment.h>
 #include <utils/hostosinfo.h>
 #include <utils/persistentsettings.h>
+#include <utils/pathchooser.h>
 #include <utils/qtcassert.h>
 #include <utils/runextensions.h>
 #include <utils/synchronousprocess.h>
@@ -249,7 +250,11 @@ void AndroidConfig::load(const QSettings &settings)
     // user settings
     m_partitionSize = settings.value(PartitionSizeKey, 1024).toInt();
     m_sdkLocation = FileName::fromString(settings.value(SDKLocationKey).toString());
+    if (m_sdkLocation.isEmpty())
+        m_sdkLocation = FileName::fromString(Utils::PathChooser::homePath() + QLatin1String("/.dev/android-sdk"));
     m_ndkLocation = FileName::fromString(settings.value(NDKLocationKey).toString());
+    if (m_ndkLocation.isEmpty())
+        m_ndkLocation = FileName::fromString(Utils::PathChooser::homePath() + QLatin1String("/.dev/android-ndk"));
     m_antLocation = FileName::fromString(settings.value(AntLocationKey).toString());
     m_useGradle = settings.value(UseGradleKey, false).toBool();
     m_openJDKLocation = FileName::fromString(settings.value(OpenJDKLocationKey).toString());
