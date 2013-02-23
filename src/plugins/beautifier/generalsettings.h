@@ -54,7 +54,7 @@ public:
     void setAutoFormatOnlyCurrentProject(bool autoFormatOnlyCurrentProject);
 
 private:
-    bool m_autoFormatOnSave = false;
+    bool m_autoFormatOnSave = true;
     bool m_autoFormatOnlyCurrentProject = true;
     QString m_autoFormatTool;
     QList<Utils::MimeType> m_autoFormatMime;

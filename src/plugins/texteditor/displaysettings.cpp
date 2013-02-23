@@ -51,7 +51,7 @@ DisplaySettings::DisplaySettings() :
     m_textWrapping(false),
     m_visualizeWhitespace(false),
     m_displayFoldingMarkers(true),
-    m_highlightCurrentLine(false),
+    m_highlightCurrentLine(true),
     m_highlightBlocks(false),
     m_animateMatchingParentheses(true),
     m_highlightMatchingParentheses(true),
