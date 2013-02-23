@@ -55,7 +55,7 @@ public:
     bool m_textWrapping = false;
     bool m_visualizeWhitespace = false;
     bool m_displayFoldingMarkers = true;
-    bool m_highlightCurrentLine = false;
+    bool m_highlightCurrentLine = true;
     bool m_highlightBlocks = false;
     bool m_animateMatchingParentheses = true;
     bool m_highlightMatchingParentheses = true;

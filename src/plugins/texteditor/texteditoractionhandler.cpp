@@ -236,7 +236,7 @@ void TextEditorActionHandlerPrivate::createActions()
     m_printAction = registerAction(PRINT,
             [] (TextEditorWidget *widget) { widget->print(Core::ICore::printer()); });
     m_deleteLineAction = registerAction(DELETE_LINE,
-            [] (TextEditorWidget *w) { w->deleteLine(); }, true, tr("Delete &Line"));
+            [] (TextEditorWidget *w) { w->deleteLine(); }, true, tr("Delete &Line"), QKeySequence(tr("Ctrl+D")));
     m_deleteEndOfLineAction = registerAction(DELETE_END_OF_LINE,
             [] (TextEditorWidget *w) { w->deleteEndOfLine(); }, true, tr("Delete Line from Cursor On"));
     m_deleteEndOfWordAction = registerAction(DELETE_END_OF_WORD,
@@ -433,9 +433,9 @@ void TextEditorActionHandlerPrivate::createActions()
 
     // register GOTO Actions
     registerAction(GOTO_LINE_START,
-            [] (TextEditorWidget *w) { w->gotoLineStart(); }, true, tr("Go to Line Start"));
+            [] (TextEditorWidget *w) { w->gotoLineStart(); }, true, tr("Go to Line Start"), QKeySequence(tr("Ctrl+Alt+Return")));
     registerAction(GOTO_LINE_END,
-            [] (TextEditorWidget *w) { w->gotoLineEnd(); }, true, tr("Go to Line End"));
+            [] (TextEditorWidget *w) { w->gotoLineEnd(); }, true, tr("Go to Line End"), QKeySequence(tr("Shift+Return")));
     registerAction(GOTO_NEXT_LINE,
             [] (TextEditorWidget *w) { w->gotoNextLine(); }, true, tr("Go to Next Line"));
     registerAction(GOTO_PREVIOUS_LINE,
