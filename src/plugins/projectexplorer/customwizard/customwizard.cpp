@@ -336,7 +336,6 @@ CustomWizard *CustomWizard::createWizard(const CustomProjectWizard::CustomWizard
         rc = factory->create();
 
     if (!rc) {
-        qWarning("Unable to create custom wizard for class %s.", qPrintable(p->klass));
         return 0;
     }
 

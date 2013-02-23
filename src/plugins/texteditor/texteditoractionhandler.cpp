@@ -276,7 +276,7 @@ void TextEditorActionHandlerPrivate::createActions()
     m_printAction = registerAction(PRINT,
             [this] (TextEditorWidget *widget) { widget->print(Core::ICore::printer()); });
     m_deleteLineAction = registerAction(DELETE_LINE,
-            [this] (TextEditorWidget *w) { w->deleteLine(); }, true, tr("Delete &Line"));
+            [this] (TextEditorWidget *w) { w->deleteLine(); }, true, tr("Delete &Line"), QKeySequence(tr("Ctrl+D")));
     m_deleteEndOfWordAction = registerAction(DELETE_END_OF_WORD,
             [this] (TextEditorWidget *w) { w->deleteEndOfWord(); }, true, tr("Delete Word from Cursor On"));
     m_deleteEndOfWordCamelCaseAction = registerAction(DELETE_END_OF_WORD_CAMEL_CASE,
@@ -299,10 +299,10 @@ void TextEditorActionHandlerPrivate::createActions()
             QKeySequence(tr("Ctrl+Shift+Down")));
     m_copyLineUpAction = registerAction(COPY_LINE_UP,
             [this] (TextEditorWidget *w) { w->copyLineUp(); }, true, tr("Copy Line Up"),
-            QKeySequence(tr("Ctrl+Alt+Up")));
+            QKeySequence(tr("Ctrl+Up")));
     m_copyLineDownAction = registerAction(COPY_LINE_DOWN,
             [this] (TextEditorWidget *w) { w->copyLineDown(); }, true, tr("Copy Line Down"),
-            QKeySequence(tr("Ctrl+Alt+Down")));
+            QKeySequence(tr("Ctrl+Down")));
     m_joinLinesAction = registerAction(JOIN_LINES,
             [this] (TextEditorWidget *w) { w->joinLines(); }, true, tr("Join Lines"),
             QKeySequence(tr("Ctrl+J")));
@@ -454,9 +454,9 @@ void TextEditorActionHandlerPrivate::createActions()
 
     // register GOTO Actions
     registerAction(GOTO_LINE_START,
-            [this] (TextEditorWidget *w) { w->gotoLineStart(); }, true, tr("Go to Line Start"));
+            [this] (TextEditorWidget *w) { w->gotoLineStart(); }, true, tr("Go to Line Start"), QKeySequence(tr("Ctrl+Alt+Return")));
     registerAction(GOTO_LINE_END,
-            [this] (TextEditorWidget *w) { w->gotoLineEnd(); }, true, tr("Go to Line End"));
+            [this] (TextEditorWidget *w) { w->gotoLineEnd(); }, true, tr("Go to Line End"), QKeySequence(tr("Shift+Return")));
     registerAction(GOTO_NEXT_LINE,
             [this] (TextEditorWidget *w) { w->gotoNextLine(); }, true, tr("Go to Next Line"));
     registerAction(GOTO_PREVIOUS_LINE,

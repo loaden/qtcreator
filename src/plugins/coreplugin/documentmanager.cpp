@@ -1236,10 +1236,19 @@ void readSettings()
     s->beginGroup(QLatin1String(directoryGroupC));
     const QString settingsProjectDir = s->value(QLatin1String(projectDirectoryKeyC),
                                                 QString()).toString();
-    if (!settingsProjectDir.isEmpty() && QFileInfo(settingsProjectDir).isDir())
+    if (!settingsProjectDir.isEmpty() && QFileInfo(settingsProjectDir).isDir()) {
         d->m_projectsDirectory = settingsProjectDir;
-    else
+    } else {
+#ifdef Q_OS_LINUX
+        d->m_projectsDirectory = PathChooser::homePath() + QLatin1String("/qpSOFT/Projects");
+#else
+#ifdef Q_OS_WIN
+        d->m_projectsDirectory = QLatin1String("D:\\qpSOFT\\Projects");
+#else
         d->m_projectsDirectory = PathChooser::homePath();
+#endif
+#endif
+    }
     d->m_useProjectsDirectory = s->value(QLatin1String(useProjectDirectoryKeyC),
                                          d->m_useProjectsDirectory).toBool();
 
