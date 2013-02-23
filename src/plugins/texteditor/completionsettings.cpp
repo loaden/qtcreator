@@ -40,7 +40,7 @@ static const char autoSplitStringsKey[] = "AutoSplitStrings";
 using namespace TextEditor;
 
 CompletionSettings::CompletionSettings()
-    : m_caseSensitivity(CaseInsensitive)
+    : m_caseSensitivity(FirstLetterCaseSensitive)
     , m_completionTrigger(AutomaticCompletion)
     , m_automaticProposalTimeoutInMs(400)
     , m_autoInsertBrackets(true)

@@ -36,8 +36,8 @@ static const char groupPostfix[] = "MarginSettings";
 using namespace TextEditor;
 
 MarginSettings::MarginSettings()
-    : m_showMargin(false)
-    , m_marginColumn(80)
+    : m_showMargin(true)
+    , m_marginColumn(100)
 {
 }
 
