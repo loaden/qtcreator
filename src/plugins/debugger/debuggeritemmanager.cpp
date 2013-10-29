@@ -694,6 +694,10 @@ void DebuggerItemManagerPrivate::autoDetectCdbDebuggers()
         }
     }
 
+    const FileName &pcdb = FileName::fromString(QString::fromLocal8Bit(qgetenv("CDB_EXEC")));
+    if (pcdb.toFileInfo().isExecutable() && !cdbs.contains(pcdb))
+        cdbs.append(pcdb);
+
     foreach (const FileName &cdb, cdbs) {
         if (DebuggerItemManager::findByCommand(cdb))
             continue;
