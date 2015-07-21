@@ -34,7 +34,6 @@
 #include "gitversioncontrol.h"
 #include "mergetool.h"
 #include "branchadddialog.h"
-#include "gerrit/gerritplugin.h"
 
 #include <coreplugin/coreconstants.h>
 #include <coreplugin/editormanager/editormanager.h>
@@ -3187,8 +3186,6 @@ void GitClient::StashInfo::end()
 
     if (m_pushAction == NormalPush)
         GitPlugin::client()->push(m_workingDir);
-    else if (m_pushAction == PushToGerrit)
-        GitPlugin::instance()->gerritPlugin()->push(m_workingDir);
 
     m_pushAction = NoPush;
     m_stashResult = NotStashed;

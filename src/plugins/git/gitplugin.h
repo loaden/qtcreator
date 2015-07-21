@@ -52,10 +52,6 @@ class Context;
 class ActionContainer;
 } // namespace Core
 namespace Utils { class ParameterAction; }
-namespace Gerrit {
-namespace Internal { class GerritPlugin; }
-} // namespace Gerrit
-
 namespace Git {
 namespace Internal {
 
@@ -85,7 +81,6 @@ public:
 
     GitVersionControl *gitVersionControl() const;
 
-    Gerrit::Internal::GerritPlugin *gerritPlugin() const;
     bool isCommitEditorOpen() const;
     static QString msgRepositoryLabel(const QString &repository);
     static QString invalidBranchAndRemoteNamePattern();
@@ -208,7 +203,6 @@ private:
     QVector<Utils::ParameterAction *> m_projectActions;
     QVector<QAction *> m_repositoryActions;
     Utils::ParameterAction *m_applyCurrentFilePatchAction = nullptr;
-    Gerrit::Internal::GerritPlugin *m_gerritPlugin = nullptr;
 
     GitClient *m_gitClient = nullptr;
     QPointer<StashDialog> m_stashDialog;
