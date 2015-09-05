@@ -819,6 +819,29 @@ QList<ToolChain *> MsvcToolChainFactory::autoDetect(const QList<ToolChain *> &al
     }
 
     detectCppBuildTools(&results);
+    const QString vcInstallDir = QString::fromLocal8Bit(qgetenv("VCINSTALLDIR"));
+    if (!vcInstallDir.isEmpty()) {
+        const QString name(QLatin1String("14.0"));
+        const QString version(QLatin1String("14.0"));
+        QDir dir(vcInstallDir);
+        dir.cd(QLatin1String("bin"));
+        QFileInfo fi(dir, QLatin1String("SetEnv.cmd"));
+        if (fi.exists()) {
+            QList<ToolChain *> tmp;
+            tmp.append(new MsvcToolChain(generateDisplayName(name, MsvcToolChain::VS, MsvcToolChain::amd64),
+                                         findAbiOfMsvc(MsvcToolChain::VS, MsvcToolChain::amd64, version),
+                                         fi.absoluteFilePath(), QLatin1String("/amd64"), ToolChain::AutoDetection));
+            ToolChain *x86 = new MsvcToolChain(generateDisplayName(name, MsvcToolChain::VS, MsvcToolChain::x86),
+                                               findAbiOfMsvc(MsvcToolChain::VS, MsvcToolChain::x86, version),
+                                               fi.absoluteFilePath(), QLatin1String("/x86"), ToolChain::AutoDetection);
+            const QString cl = Utils::Environment::systemEnvironment().searchInPath(QLatin1String("cl.exe")).toString();
+            if (Utils::is64BitWindowsBinary(cl))
+                tmp.append(x86);
+            else
+                tmp.prepend(x86);
+            results = tmp + results;
+        }
+    }
 
     detectClangClToolChain(&results);
 
