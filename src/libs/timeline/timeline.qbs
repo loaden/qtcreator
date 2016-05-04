@@ -4,6 +4,7 @@ import QtcLibrary
 
 QtcLibrary {
     name: "Timeline"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["qml", "quick", "gui"] }
     Depends { name: "Utils" }

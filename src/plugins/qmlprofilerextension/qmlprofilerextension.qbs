@@ -2,6 +2,7 @@ import qbs
 
 QtcPlugin {
     name: "QmlProfilerExtension"
+    condition: project.fullBuilds
 
     Depends { name: "Core" }
     Depends { name: "QmlProfiler" }

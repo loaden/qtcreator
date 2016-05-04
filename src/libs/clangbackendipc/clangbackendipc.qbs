@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcLibrary {
     name: "ClangBackEndIpc"
+    condition: project.fullBuilds
 
     Depends { name: "Qt.network" }
     Depends { name: "Sqlite" }

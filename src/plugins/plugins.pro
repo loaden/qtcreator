@@ -15,47 +15,25 @@ SUBDIRS   = \
     bookmarks \
     projectexplorer \
     vcsbase \
-    perforce \
-    subversion \
     git \
-    cvs \
     cpptools \
     qtsupport \
     qmakeprojectmanager \
     debugger \
     help \
-    cpaster \
     cmakeprojectmanager \
-    autotoolsprojectmanager \
-    fakevim \
-    emacskeys \
-    designer \
     resourceeditor \
     genericprojectmanager \
     qmljseditor \
-    qmlprojectmanager \
-    glsleditor \
-    pythoneditor \
-    mercurial \
-    bazaar \
     classview \
     tasklist \
     qmljstools \
     macros \
-    remotelinux \
     android \
     valgrind \
     todo \
-    qnx \
-    clearcase \
-    baremetal \
-    ios \
-    beautifier \
     modeleditor \
-    qmakeandroidsupport \
-    winrt \
     qmlprofiler \
-    updateinfo \
     welcome
 
 DO_NOT_BUILD_QMLDESIGNER = $$(DO_NOT_BUILD_QMLDESIGNER)

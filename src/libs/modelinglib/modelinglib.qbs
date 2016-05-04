@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcLibrary {
     name: "ModelingLib"
+    condition: project.fullBuilds
 
     cpp.defines: base.concat("QMT_LIBRARY")
     cpp.includePaths: base.concat([

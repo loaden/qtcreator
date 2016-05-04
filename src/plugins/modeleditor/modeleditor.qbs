@@ -4,6 +4,7 @@ import QtcPlugin
 
 QtcPlugin {
     name: "ModelEditor"
+    condition: project.fullBuilds
 
     Depends { name: "Qt.widgets" }
     Depends { name: "Qt.svg"; required: false }

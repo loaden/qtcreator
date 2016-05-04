@@ -2,6 +2,7 @@ import qbs
 
 QtcPlugin {
     name: "AutoTest"
+    condition: project.fullBuilds
 
     Depends { name: "Core" }
     Depends { name: "CppTools" }

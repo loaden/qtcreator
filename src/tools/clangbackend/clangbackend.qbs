@@ -24,7 +24,7 @@ QtcTool {
     property string llvmLibDir: Clang.libDir(llvmConfig, QtcProcessOutputReader)
     property stringList llvmLibs: Clang.libraries(qbs.targetOS)
 
-    condition: llvmConfig && File.exists(llvmIncludeDir.concat("/clang-c/Index.h"))
+    condition: project.fullBuilds && llvmConfig && File.exists(llvmIncludeDir.concat("/clang-c/Index.h"))
 
     cpp.includePaths: base.concat(["ipcsource", llvmIncludeDir])
     cpp.libraryPaths: base.concat(llvmLibDir)

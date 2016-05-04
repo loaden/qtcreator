@@ -2,7 +2,7 @@ import qbs 1.0
 
 QtcTool {
     name: "qtcdebugger"
-    condition: qbs.targetOS.contains("windows")
+    condition: qbs.targetOS.contains("windows") && project.fullBuilds
 
     property string registryAccessDir: project.sharedSourcesDir + "/registryaccess"
 

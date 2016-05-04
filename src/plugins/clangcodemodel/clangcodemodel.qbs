@@ -25,7 +25,7 @@ QtcPlugin {
     property string llvmLibDir: Clang.libDir(llvmConfig, QtcProcessOutputReader)
     property string llvmVersion: Clang.version(llvmConfig, QtcProcessOutputReader)
 
-    condition: llvmConfig && File.exists(llvmIncludeDir.concat("/clang-c/Index.h"))
+    condition: project.fullBuilds && llvmConfig && File.exists(llvmIncludeDir.concat("/clang-c/Index.h"))
 
     cpp.defines: {
         var defines = base;

@@ -2,6 +2,7 @@ import qbs
 
 QtcTool {
     name: "buildoutputparser"
+    condition: project.fullBuilds
     Depends { name: "Qt"; submodules: ["core", "widgets"]; }
     Depends { name: "ProjectExplorer" }
     Depends { name: "QtSupport" }
