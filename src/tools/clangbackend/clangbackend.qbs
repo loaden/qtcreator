@@ -16,7 +16,7 @@ QtcTool {
 
     files: [ "clangbackendmain.cpp" ]
 
-    condition: libclang.present
+    condition: project.fullBuilds && libclang.present
 
     cpp.includePaths: base.concat(["ipcsource", libclang.llvmIncludeDir])
     cpp.libraryPaths: base.concat(libclang.llvmLibDir)

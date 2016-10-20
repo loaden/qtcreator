@@ -3,6 +3,7 @@ import qbs.FileInfo
 
 QtcPlugin {
     name: "GenericProjectManager"
+    condition: project.fullBuilds
 
     Depends { name: "Qt.widgets" }
     Depends { name: "Utils" }

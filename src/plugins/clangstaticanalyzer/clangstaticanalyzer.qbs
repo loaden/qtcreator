@@ -2,8 +2,9 @@ import qbs
 
 QtcPlugin {
     name: "ClangStaticAnalyzer"
+    condition: project.fullBuilds
 
-    Depends { name: "Debugger" }
+    Depends { name: "Debugger"; required: false }
     Depends { name: "Core" }
     Depends { name: "CppTools" }
     Depends { name: "ExtensionSystem" }

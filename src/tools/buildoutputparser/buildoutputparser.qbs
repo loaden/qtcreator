@@ -2,10 +2,11 @@ import qbs
 
 QtcTool {
     name: "buildoutputparser"
+    condition: project.fullBuilds
     Depends { name: "Qt"; submodules: ["core", "widgets"]; }
     Depends { name: "ProjectExplorer" }
     Depends { name: "QtSupport" }
-    Depends { name: "QmakeProjectManager" }
+    Depends { name: "QmakeProjectManager"; required: false }
     Depends { name: "Utils" }
     files: [
         "main.cpp",

@@ -2,6 +2,7 @@ import qbs
 
 QtcPlugin {
     name: "AutoTest"
+    condition: project.fullBuilds
 
     Depends { name: "Core" }
     Depends { name: "CppTools" }
@@ -10,7 +11,7 @@ QtcPlugin {
     Depends { name: "QmlJS" }
     Depends { name: "QmlJSTools" }
     Depends { name: "Utils" }
-    Depends { name: "Debugger" }
+    Depends { name: "Debugger"; required: false }
 
     pluginTestDepends: [
         "QbsProjectManager",

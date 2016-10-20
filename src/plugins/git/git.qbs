@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "Git"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["widgets", "network"] }
     Depends { name: "Utils" }

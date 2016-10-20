@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "ImageViewer"
+    condition: project.fullBuilds
 
     Depends { name: "Qt.svg"; required: false }
     Depends { name: "Qt.widgets" }

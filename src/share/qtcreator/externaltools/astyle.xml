@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<externaltool id="astyle">
+    <description>A Free, Fast and Small Automatic Formatter for C/C++ Source Code</description>
+    <displayname>Artistic Style</displayname>
+    <category>Text</category>
+    <executable modifiesdocument="yes">
+        <path>astyle</path>
+        <arguments>--style=kr --pad-oper --pad-header --unpad-paren --convert-tabs --align-pointer=name --align-reference=name %{CurrentDocument:FilePath}</arguments>
+        <workingdirectory>%{CurrentDocument:Path}</workingdirectory>
+    </executable>
+</externaltool>

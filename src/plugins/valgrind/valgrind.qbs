@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "Valgrind"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["widgets", "network"] }
     Depends { name: "CPlusPlus"}
@@ -9,7 +10,7 @@ QtcPlugin {
     Depends { name: "Utils" }
 
     Depends { name: "Core" }
-    Depends { name: "Debugger" }
+    Depends { name: "Debugger"; required: false }
     Depends { name: "ProjectExplorer" }
     Depends { name: "TextEditor" }
 

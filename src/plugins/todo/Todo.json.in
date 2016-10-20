@@ -2,7 +2,6 @@
     \"Name\" : \"Todo\",
     \"Version\" : \"$$QTCREATOR_VERSION\",
     \"CompatVersion\" : \"$$QTCREATOR_COMPAT_VERSION\",
-    \"Experimental\" : true,
     \"Vendor\" : \"Dmitry Savchenko\",
     \"Copyright\" : \"(C) 2016 Dmitry Savchenko, Vasiliy Sorokin\",
     \"License\" : [ \"Commercial Usage\",

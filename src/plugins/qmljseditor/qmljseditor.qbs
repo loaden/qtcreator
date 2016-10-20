@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "QmlJSEditor"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["widgets"] }
     Depends { name: "LanguageUtils" }

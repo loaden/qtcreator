@@ -2,6 +2,7 @@ import qbs 1.0
 
 Project {
     name: "QmakeProjectManager"
+    condition: project.fullBuilds
 
     QtcDevHeaders { }
 

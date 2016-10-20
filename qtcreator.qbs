@@ -5,11 +5,20 @@ import qbs.FileInfo
 Project {
     name: "Qt Creator"
     minimumQbsVersion: "1.5.0"
+    property bool fullBuilds: false
+
     property bool withAutotests: qbs.buildVariant === "debug"
     property string licenseType: "opensource"
     property path ide_source_tree: path
-    property pathList additionalPlugins: []
-    property pathList additionalLibs: []
+    property pathList additionalPlugins: qbs.targetOS.contains("linux") ? [
+        "android/android.qbs",
+        "clangstaticanalyzer/clangstaticanalyzer.qbs",
+        "modeleditor/modeleditor.qbs",
+        "valgrind/valgrind.qbs",
+    ] : []
+    property pathList additionalLibs: qbs.targetOS.contains("linux") ? [
+        "modelinglib/modelinglib.qbs",
+    ] : []
     property pathList additionalTools: []
     property pathList additionalAutotests: []
     property string sharedSourcesDir: path + "/src/shared"
@@ -19,8 +28,6 @@ Project {
         "doc/doc.qbs",
         "src/src.qbs",
         "share/share.qbs",
-        "share/qtcreator/translations/translations.qbs",
-        "tests/tests.qbs"
     ]
 
     Product {

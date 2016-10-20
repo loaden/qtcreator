@@ -13,8 +13,6 @@ Product {
         files: [
             "cplusplus/**/*",
             "debugger/**/*",
-            "designer/**/*",
-            "glsl/**/*",
             "modeleditor/**/*",
             "qml/**/*",
             "qmldesigner/**/*",
@@ -47,10 +45,10 @@ Product {
         prefix: project.ide_source_tree + "/src/share/qtcreator/externaltools/"
         files: {
             var list = [
+                "astyle.xml",
                 "lrelease.xml",
                 "lupdate.xml",
                 "qmlscene.xml",
-                "qmlviewer.xml",
                 "sort.xml",
             ]
             if (qbs.targetOS.contains("windows"))

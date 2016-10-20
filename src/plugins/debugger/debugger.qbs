@@ -2,6 +2,7 @@ import qbs 1.0
 
 Project {
     name: "Debugger"
+    condition: project.fullBuilds
 
     QtcDevHeaders { }
 

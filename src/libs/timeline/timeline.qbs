@@ -4,6 +4,7 @@ import QtcLibrary
 
 Project {
     name: "Timeline"
+    condition: project.fullBuilds
 
     QtcDevHeaders { }
 

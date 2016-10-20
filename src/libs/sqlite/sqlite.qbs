@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcLibrary {
     name: "Sqlite"
+    condition: project.fullBuilds
 
     cpp.includePaths: base.concat(["../3rdparty/sqlite", "."])
     cpp.defines: base.concat([

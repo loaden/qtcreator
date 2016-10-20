@@ -2,16 +2,17 @@ import qbs 1.0
 
 QtcPlugin {
     name: "QmlProfiler"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["widgets", "network", "quick", "quickwidgets"] }
     Depends { name: "QmlJS" }
     Depends { name: "QmlDebug" }
     Depends { name: "QtcSsh" }
     Depends { name: "Utils" }
-    Depends { name: "Timeline" }
+    Depends { name: "Timeline"; required: false }
 
     Depends { name: "Core" }
-    Depends { name: "Debugger" }
+    Depends { name: "Debugger"; required: false }
     Depends { name: "ProjectExplorer" }
     Depends { name: "QtSupport" }
     Depends { name: "TextEditor" }
