@@ -52,7 +52,7 @@ QtcLibrary {
                                     FileInfo.joinPaths(product.sourceDirectory,
                                                        "qtcreatorcdbext.def"))]
     installDir: {
-        var dirName = name;
+        var dirName = parent.name;
         if (qbs.architecture.contains("x86_64"))
             dirName += "64";
         else
