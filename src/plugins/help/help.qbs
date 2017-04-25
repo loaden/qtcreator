@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "Help"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["help", "network", "sql"]; }
     Depends { name: "Qt.printsupport" }

@@ -18,7 +18,7 @@ QtcPlugin {
         "QmakeProjectManager",
     ]
 
-    condition: libclang.present
+    condition: project.fullBuilds && libclang.present
 
     cpp.defines: {
         var defines = base;

@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcPlugin {
     name: "Beautifier"
+    condition: project.fullBuilds
 
     Depends { name: "Qt.widgets" }
     Depends { name: "Qt.xml" }

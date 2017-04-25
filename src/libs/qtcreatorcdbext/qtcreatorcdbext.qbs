@@ -4,7 +4,7 @@ import qbs.File
 import qbs.FileInfo
 
 QtcLibrary {
-    condition: qbs.toolchain.contains("msvc") && cdbPath
+    condition: qbs.toolchain.contains("msvc") && cdbPath && project.fullBuilds
     name: "qtcreatorcdbext"
     targetName: name
     property string cdbPath: {

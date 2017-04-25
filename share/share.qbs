@@ -13,17 +13,15 @@ Product {
         files: [
             "cplusplus/**/*",
             "debugger/**/*",
-            "designer/**/*",
-            "glsl/**/*",
-            "modeleditor/**/*",
-            "qml/**/*",
-            "qmldesigner/**/*",
-            "qmlicons/**/*",
-            "qml-type-descriptions/**/*",
             "schemes/**/*",
             "snippets/**/*",
             "styles/**/*",
-            "templates/**/*",
+            "templates/wizards/files/cppheader/**/*",
+            "templates/wizards/files/cppsource/**/*",
+            "templates/wizards/files/text/**/*",
+            "templates/wizards/global/**/*",
+            "templates/wizards/projects/plainc/**/*",
+            "templates/wizards/projects/plaincpp**/*",
             "themes/**/*",
             "welcomescreen/**/*"
         ]
@@ -47,10 +45,7 @@ Product {
         prefix: project.ide_source_tree + "/src/share/qtcreator/externaltools/"
         files: {
             var list = [
-                "lrelease.xml",
-                "lupdate.xml",
-                "qmlscene.xml",
-                "qmlviewer.xml",
+                "astyle.xml",
                 "sort.xml",
             ]
             if (qbs.targetOS.contains("windows"))
