@@ -3,6 +3,7 @@ import qbs.FileInfo
 
 QtcPlugin {
     name: "Valgrind"
+    condition: project.fullBuilds
 
     Depends { name: "Qt"; submodules: ["widgets", "network"] }
     Depends { name: "CPlusPlus"}

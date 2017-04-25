@@ -16,7 +16,7 @@ Project {
         project.sharedSourcesDir + "/pch_files.qbs",
     ]
 
-    property bool qbsSubModuleExists: File.exists(qbsProject.qbsBaseDir + "/qbs.qbs")
+    property bool qbsSubModuleExists: File.exists(qbsProject.qbsBaseDir + "/qbs.qbs") && project.fullBuilds
     property path qbs_install_dir: Environment.getEnv("QBS_INSTALL_DIR")
     property bool useExternalQbs: qbs_install_dir
     property bool buildQbsProjectManager: useExternalQbs || qbsSubModuleExists
