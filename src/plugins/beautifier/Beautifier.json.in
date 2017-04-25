@@ -2,7 +2,6 @@
     \"Name\" : \"Beautifier\",
     \"Version\" : \"$$QTCREATOR_VERSION\",
     \"CompatVersion\" : \"$$QTCREATOR_COMPAT_VERSION\",
-    \"Experimental\" : true,
     \"Vendor\" : \"Lorenz Haas\",
     \"Copyright\" : \"(C) 2017 Lorenz Haas, (C) $$QTCREATOR_COPYRIGHT_YEAR The Qt Company Ltd\",
     \"License\" : [ \"Commercial Usage\",
