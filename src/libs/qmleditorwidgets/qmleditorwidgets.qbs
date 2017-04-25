@@ -2,6 +2,7 @@ import qbs 1.0
 
 QtcLibrary {
     name: "QmlEditorWidgets"
+    condition: project.fullBuilds
 
     cpp.defines: base.concat([
         "QMLEDITORWIDGETS_LIBRARY"

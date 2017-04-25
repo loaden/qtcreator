@@ -2,6 +2,7 @@ import qbs 1.0
 
 Project {
     name: "ResourceEditor"
+    condition: project.fullBuilds
 
     QtcDevHeaders { }
 

@@ -6,9 +6,14 @@ Project {
     name: "Qt Creator"
     minimumQbsVersion: "1.7.0"
     property string minimumMacosVersion: "10.8"
+    property bool fullBuilds: false
     property bool withAutotests: qbs.buildVariant === "debug"
     property path ide_source_tree: path
-    property pathList additionalPlugins: []
+    property pathList additionalPlugins: qbs.targetOS.contains("linux") ? [
+        "android/android.qbs",
+        "clangstaticanalyzer/clangstaticanalyzer.qbs",
+        "valgrind/valgrind.qbs",
+    ] : []
     property pathList additionalLibs: []
     property pathList additionalTools: []
     property pathList additionalAutotests: []
@@ -16,15 +21,13 @@ Project {
     qbsSearchPaths: "qbs"
 
     references: [
-        "doc/doc.qbs",
         "src/src.qbs",
         "share/share.qbs",
-        "share/qtcreator/translations/translations.qbs",
-        "tests/tests.qbs"
     ]
 
     Product {
         name: "qbs_imports_modules"
+        condition: fullBuilds
         Depends { name: "qtc" }
         Group {
             prefix: "qbs/"
