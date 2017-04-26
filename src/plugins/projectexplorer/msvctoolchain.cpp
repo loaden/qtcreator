@@ -899,6 +899,38 @@ static void detectCppBuildTools(QList<ToolChain *> *list)
     }
 }
 
+static void detectPortableMSVC(QList<ToolChain *> *list)
+{
+    struct Entry {
+        const char *postFix;
+        const char *varsBatArg;
+        Abi::Architecture architecture;
+        Abi::BinaryFormat format;
+        unsigned char wordSize;
+    };
+
+    const Entry entries[] = {
+        {" (x86)", "x86", Abi::X86Architecture, Abi::PEFormat, 32},
+        {" (x64)", "amd64", Abi::X86Architecture, Abi::PEFormat, 64},
+    };
+
+    const QString name = QStringLiteral("Microsoft Visual C++ Build Tools (Portable)");
+    const QString vcVarsBat = QFile::decodeName(qgetenv("VCINSTALLDIR")) + QStringLiteral("\\vcvarsall.bat"); // AbstractMsvcToolChain::compilerCommand()要在上级目录查找vcvarsall.bat
+    if (!QFileInfo(vcVarsBat).isFile())
+        return;
+    const size_t count = sizeof(entries) / sizeof(entries[0]);
+    for (size_t i = 0; i < count; ++i) {
+        const Entry &e = entries[i];
+        const Abi abi(e.architecture, Abi::WindowsOS, Abi::WindowsMsvc2015Flavor,
+                      e.format, e.wordSize);
+        for (auto language: {Constants::C_LANGUAGE_ID, Constants::CXX_LANGUAGE_ID}) {
+            list->append(new MsvcToolChain(name + QLatin1String(e.postFix), abi,
+                                           vcVarsBat, QLatin1String(e.varsBatArg),
+                                           language, ToolChain::AutoDetection));
+        }
+    }
+}
+
 static ToolChain *findMsvcToolChain(const QList<ToolChain *> &list,
                                     unsigned char wordWidth, Abi::OSFlavor flavor)
 {
@@ -945,6 +977,7 @@ static void detectClangClToolChain(QList<ToolChain *> *list)
 QList<ToolChain *> MsvcToolChainFactory::autoDetect(const QList<ToolChain *> &alreadyKnown)
 {
     QList<ToolChain *> results;
+    detectPortableMSVC(&results);
 
     // 1) Installed SDKs preferred over standalone Visual studio
     const QSettings sdkRegistry(QLatin1String("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows"),
